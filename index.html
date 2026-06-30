@@ -3,133 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gen Autonomous — Fashion Studio</title>
+<title>Gen Autonomous — Studio</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap');
+
   :root{
-    --ink:#161311;
-    --paper:#F6F1E9;
-    --rust:#B5482E;
-    --rust-dim:#8E3A24;
-    --gold:#C8973A;
-    --line:#dcd3c2;
-    --panel:#fffdf8;
+    --bg:#0a0a0d;
+    --panel:rgba(255,255,255,0.04);
+    --panel-border:rgba(255,255,255,0.09);
+    --text:#f3f1ee;
+    --muted:#8d8a92;
+    --grad-a:#5b6ee8;
+    --grad-b:#c45b8c;
+    --grad-c:#e0a458;
+    --grad-d:#3fb6a8;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Iowan Old Style','Georgia',serif;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
     min-height:100vh;
+    overflow-x:hidden;
   }
-  .wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px;}
+
+  .glow{
+    position:fixed;
+    top:-30%;
+    left:50%;
+    transform:translateX(-50%);
+    width:1100px;
+    height:700px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(91,110,232,0.35), transparent 55%),
+      radial-gradient(circle at 70% 40%, rgba(196,91,140,0.3), transparent 55%),
+      radial-gradient(circle at 50% 60%, rgba(224,164,88,0.22), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(63,182,168,0.25), transparent 55%);
+    filter:blur(60px);
+    z-index:0;
+    pointer-events:none;
+  }
+
+  nav{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:26px 40px;
+  }
+  .brand{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:17px;
+    letter-spacing:-0.01em;
+  }
+  .brand::after{content:".";color:var(--grad-c);}
+
+  .wrap{
+    position:relative;
+    z-index:2;
+    max-width:680px;
+    margin:0 auto;
+    padding:60px 24px 100px;
+  }
 
   .eyebrow{
-    font-family:'Courier New',monospace;
-    font-size:12px;
-    letter-spacing:.18em;
+    text-align:center;
+    font-size:11.5px;
+    letter-spacing:.22em;
     text-transform:uppercase;
-    color:var(--rust);
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    text-align:center;
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.0;
+    letter-spacing:-0.03em;
+    margin:0 0 22px;
+    background:linear-gradient(180deg,#ffffff 0%,#a8a5ae 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .sub{
+    text-align:center;
+    font-size:15px;
+    color:var(--muted);
+    max-width:38ch;
+    margin:0 auto 44px;
+    line-height:1.6;
+    font-weight:400;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    backdrop-filter:blur(20px);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:56px;
+  }
+  .stat{
+    padding:16px 18px;
+    border-right:1px solid var(--panel-border);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-label{
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:5px;
+  }
+  .stat-value{font-size:14px;font-weight:600;}
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:18px;
+    backdrop-filter:blur(20px);
+    padding:28px;
+    margin-bottom:18px;
+  }
+
+  .card-label{
     display:flex;
     align-items:center;
     gap:10px;
-    margin-bottom:10px;
-  }
-  .eyebrow::before{content:"";width:18px;height:1px;background:var(--rust);}
-
-  h1{
-    font-family:'Times New Roman', Georgia, serif;
-    font-weight:400;
-    font-size:clamp(34px,6vw,52px);
-    line-height:1.02;
-    margin:0 0 14px;
-    letter-spacing:-0.01em;
-  }
-  h1 em{font-style:italic;color:var(--rust);}
-
-  .sub{
-    font-family:'Courier New',monospace;
-    font-size:13.5px;
-    color:#5a5249;
-    max-width:46ch;
-    line-height:1.55;
-    margin:0 0 40px;
-  }
-
-  .stepline{
-    display:flex;
-    align-items:baseline;
-    gap:12px;
-    margin:48px 0 18px;
-    border-top:1px solid var(--line);
-    padding-top:18px;
-  }
-  .stepline:first-of-type{margin-top:0;border-top:none;padding-top:0;}
-  .stepnum{
-    font-family:'Courier New',monospace;
     font-size:12px;
-    color:var(--gold);
-    letter-spacing:.1em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
   }
-  .steptitle{
-    font-size:19px;
-    font-weight:400;
+  .card-label .n{
+    width:20px;height:20px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10.5px;
+    color:var(--text);
+    flex-shrink:0;
   }
 
-  /* Upload */
+  input#fileInput{position:absolute;opacity:0;width:0;height:0;}
   .dropzone{
-    border:1.5px dashed var(--line);
-    border-radius:2px;
-    background:var(--panel);
-    padding:28px;
+    border:1.5px dashed var(--panel-border);
+    border-radius:14px;
+    padding:26px;
     display:flex;
     align-items:center;
-    gap:18px;
+    gap:16px;
     cursor:pointer;
     transition:border-color .2s ease, background .2s ease;
   }
   .dropzone:hover, .dropzone.drag{
-    border-color:var(--rust);
-    background:#fffaf2;
+    border-color:var(--grad-a);
+    background:rgba(91,110,232,0.06);
   }
-  .dropzone input{display:none;}
   .thumb{
-    width:64px;height:64px;
+    width:56px;height:56px;
     flex-shrink:0;
-    border:1px solid var(--line);
-    background:#efe9dc center/cover no-repeat;
+    border-radius:10px;
+    background:linear-gradient(135deg,#2a2a32,#1a1a20) center/cover no-repeat;
     display:flex;align-items:center;justify-content:center;
-    font-family:'Courier New',monospace;
-    font-size:10px;
-    color:#a89a82;
+    font-size:9px;
+    color:var(--muted);
+    border:1px solid var(--panel-border);
   }
-  .dz-text{font-family:'Courier New',monospace;font-size:13px;color:#5a5249;}
-  .dz-text b{color:var(--ink);font-weight:600;}
-  .dz-text span{display:block;color:#a89a82;margin-top:4px;font-size:11.5px;}
+  .dz-text{font-size:13.5px;color:var(--muted);}
+  .dz-text b{color:var(--text);font-weight:500;}
+  .dz-text span{display:block;color:#5e5b63;margin-top:3px;font-size:11.5px;}
 
-  /* Category pills */
-  .pillrow{display:flex;flex-wrap:wrap;gap:10px;}
+  .pillrow{display:flex;flex-wrap:wrap;gap:9px;}
   .pill{
-    font-family:'Courier New',monospace;
-    font-size:12.5px;
-    letter-spacing:.04em;
+    font-size:13px;
     padding:11px 18px;
-    border:1px solid var(--line);
-    background:var(--panel);
-    color:var(--ink);
+    border:1px solid var(--panel-border);
+    background:rgba(255,255,255,0.03);
+    color:var(--text);
     cursor:pointer;
-    border-radius:2px;
+    border-radius:30px;
     transition:all .15s ease;
     user-select:none;
   }
-  .pill:hover{border-color:var(--rust-dim);}
+  .pill:hover{border-color:rgba(255,255,255,0.25);}
   .pill.active{
-    background:var(--ink);
-    border-color:var(--ink);
-    color:var(--paper);
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    border-color:transparent;
+    color:#fff;
+    font-weight:500;
   }
 
-  /* Model grid */
   .modelgrid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -137,151 +211,166 @@
   }
   .modelcard{
     aspect-ratio:3/4;
-    border:1px solid var(--line);
-    background:var(--panel);
+    border-radius:12px;
+    border:1px solid var(--panel-border);
     cursor:pointer;
     position:relative;
     display:flex;
     align-items:flex-end;
-    padding:8px;
-    transition:border-color .15s ease;
+    padding:9px;
+    transition:border-color .15s ease, transform .15s ease;
     overflow:hidden;
   }
+  .modelcard:nth-child(1)::before{background:linear-gradient(150deg,#3a3550,#1a1822);}
+  .modelcard:nth-child(2)::before{background:linear-gradient(150deg,#4a2f3d,#1f1620);}
+  .modelcard:nth-child(3)::before{background:linear-gradient(150deg,#3d3a26,#1c1a14);}
+  .modelcard:nth-child(4)::before{background:linear-gradient(150deg,#254038,#131f1c);}
+  .modelcard:nth-child(5)::before{background:linear-gradient(150deg,#2f3550,#161822);}
+  .modelcard:nth-child(6)::before{background:linear-gradient(150deg,#452f4a,#1e1620);}
   .modelcard::before{
     content:"";
     position:absolute;inset:0;
-    background:linear-gradient(160deg,#e9e1d0,#d8cdb6);
   }
-  .modelcard.active{border-color:var(--rust);border-width:2px;}
+  .modelcard:hover{transform:translateY(-2px);}
+  .modelcard.active{border-color:var(--grad-c);border-width:1.5px;}
   .modelcard span{
     position:relative;
-    font-family:'Courier New',monospace;
     font-size:10.5px;
-    color:var(--ink);
-    background:rgba(246,241,233,.85);
-    padding:2px 6px;
+    color:var(--text);
+    background:rgba(10,10,13,.55);
+    backdrop-filter:blur(6px);
+    padding:3px 8px;
+    border-radius:6px;
   }
-  .modelcard.active span{background:var(--rust);color:var(--paper);}
+  .modelcard.active span{background:var(--grad-c);color:#1a1408;font-weight:600;}
 
-  /* Submit */
-  .submit-row{
-    margin-top:48px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-  }
   button.run{
-    font-family:'Courier New',monospace;
-    font-size:13.5px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    background:var(--rust);
-    color:var(--paper);
+    width:100%;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.01em;
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    color:#fff;
     border:none;
+    border-radius:30px;
     padding:17px 24px;
     cursor:pointer;
-    transition:background .15s ease;
+    transition:opacity .15s ease, transform .15s ease;
+    margin-top:8px;
   }
-  button.run:hover{background:var(--rust-dim);}
-  button.run:disabled{background:#cfc6b4;cursor:not-allowed;}
+  button.run:hover{opacity:.9;}
+  button.run:active{transform:scale(.98);}
+  button.run:disabled{background:#2a2a30;color:var(--muted);cursor:not-allowed;}
 
   .status{
-    font-family:'Courier New',monospace;
-    font-size:12px;
-    color:#5a5249;
+    font-size:12.5px;
+    color:var(--muted);
     min-height:18px;
+    text-align:center;
+    margin-top:14px;
   }
-  .status.err{color:var(--rust);}
-  .status.ok{color:#3d6b3e;}
+  .status.err{color:#e07a7a;}
+  .status.ok{color:#6fd6ad;}
 
-  /* Result */
   .result{
-    margin-top:36px;
-    border:1px solid var(--line);
-    background:var(--panel);
-    padding:20px;
+    margin-top:18px;
     display:none;
   }
   .result.show{display:block;}
-  .result img{width:100%;display:block;border:1px solid var(--line);}
-  .result-label{
-    font-family:'Courier New',monospace;
-    font-size:11px;
-    color:var(--gold);
-    letter-spacing:.1em;
-    margin-bottom:10px;
+  .result img{
+    width:100%;
+    display:block;
+    border-radius:18px;
+    border:1px solid var(--panel-border);
   }
 
-  /* config note */
   .config-note{
-    margin-top:60px;
-    border-top:1px solid var(--line);
-    padding-top:18px;
-    font-family:'Courier New',monospace;
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--panel-border);
     font-size:11.5px;
-    color:#a89a82;
+    color:#5e5b63;
     line-height:1.6;
+    text-align:center;
   }
   .config-note code{
-    background:#efe9dc;
-    padding:1px 5px;
-    color:var(--ink);
+    background:rgba(255,255,255,0.06);
+    padding:2px 6px;
+    border-radius:5px;
+    color:var(--muted);
   }
 
   @media (max-width:480px){
     .modelgrid{grid-template-columns:repeat(2,1fr);}
+    .stats{grid-template-columns:1fr;}
+    .stat{border-right:none;border-bottom:1px solid var(--panel-border);}
+    .stat:last-child{border-bottom:none;}
   }
 </style>
 </head>
 <body>
+<div class="glow"></div>
+
+<nav>
+  <div class="brand">Gen Autonomous</div>
+</nav>
+
 <div class="wrap">
 
-  <div class="eyebrow">Gen Autonomous</div>
-  <h1>Your product,<br>on a <em>real model</em>.</h1>
-  <p class="sub">Upload a product photo, pick a model and a category, run the studio. Output arrives below — no shoot, no studio, no wait.</p>
+  <div class="eyebrow">AI Fashion Studio</div>
+  <h1>Your product,<br>on a model.</h1>
+  <p class="sub">Upload a product photo, pick a model and category, run the studio.</p>
 
-  <div class="stepline"><span class="stepnum">01</span><span class="steptitle">Upload product photo</span></div>
-  <input type="file" id="fileInput" accept="image/*" style="position:absolute;opacity:0;width:0;height:0;">
-  <div class="dropzone" id="dropzone">
-    <div class="thumb" id="thumb">IMG</div>
-    <div class="dz-text" id="dzText"><b>Tap to upload</b> or drag an image here<span>JPG or PNG, flat lay or product-only shots work best</span></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Output</div><div class="stat-value">HD image</div></div>
+    <div class="stat"><div class="stat-label">Avg. time</div><div class="stat-value">~60 sec</div></div>
+    <div class="stat"><div class="stat-label">Categories</div><div class="stat-value">3</div></div>
   </div>
 
-  <div class="stepline"><span class="stepnum">02</span><span class="steptitle">Choose category</span></div>
-  <div class="pillrow" id="categoryRow">
-    <div class="pill" data-val="Kurta">Kurta</div>
-    <div class="pill" data-val="Saree">Saree</div>
-    <div class="pill" data-val="Casual-Formal">Casual / Formal</div>
+  <div class="card">
+    <div class="card-label"><span class="n">1</span>Upload product photo</div>
+    <input type="file" id="fileInput" accept="image/*">
+    <div class="dropzone" id="dropzone">
+      <div class="thumb" id="thumb">IMG</div>
+      <div class="dz-text" id="dzText"><b>Tap to upload</b><span>JPG or PNG, product-only shots work best</span></div>
+    </div>
   </div>
 
-  <div class="stepline"><span class="stepnum">03</span><span class="steptitle">Choose model</span></div>
-  <div class="modelgrid" id="modelGrid">
-    <div class="modelcard" data-val="Model 1"><span>Model 1</span></div>
-    <div class="modelcard" data-val="Model 2"><span>Model 2</span></div>
-    <div class="modelcard" data-val="Model 3"><span>Model 3</span></div>
-    <div class="modelcard" data-val="Model 4"><span>Model 4</span></div>
-    <div class="modelcard" data-val="Model 5"><span>Model 5</span></div>
-    <div class="modelcard" data-val="Model 6"><span>Model 6</span></div>
+  <div class="card">
+    <div class="card-label"><span class="n">2</span>Choose category</div>
+    <div class="pillrow" id="categoryRow">
+      <div class="pill" data-val="Kurta">Kurta</div>
+      <div class="pill" data-val="Saree">Saree</div>
+      <div class="pill" data-val="Casual-Formal">Casual / Formal</div>
+    </div>
   </div>
 
-  <div class="submit-row">
-    <button class="run" id="runBtn">Run studio</button>
-    <div class="status" id="statusText"></div>
+  <div class="card">
+    <div class="card-label"><span class="n">3</span>Choose model</div>
+    <div class="modelgrid" id="modelGrid">
+      <div class="modelcard" data-val="Model 1"><span>Model 1</span></div>
+      <div class="modelcard" data-val="Model 2"><span>Model 2</span></div>
+      <div class="modelcard" data-val="Model 3"><span>Model 3</span></div>
+      <div class="modelcard" data-val="Model 4"><span>Model 4</span></div>
+      <div class="modelcard" data-val="Model 5"><span>Model 5</span></div>
+      <div class="modelcard" data-val="Model 6"><span>Model 6</span></div>
+    </div>
   </div>
+
+  <button class="run" id="runBtn">Run studio</button>
+  <div class="status" id="statusText"></div>
 
   <div class="result" id="resultBox">
-    <div class="result-label">Output</div>
     <img id="resultImg" src="" alt="Generated result">
   </div>
 
   <div class="config-note">
-    Webhook not connected yet. Set your n8n production webhook URL in <code>WEBHOOK_URL</code> near the top of the script before this goes live. Sends a multipart POST with fields <code>image</code>, <code>category</code>, <code>model</code>.
+    Webhook not connected yet. Set <code>WEBHOOK_URL</code> in the script before going live.
   </div>
 
 </div>
 
 <script>
-  // ── Set this to your n8n production webhook URL when ready ──
   const WEBHOOK_URL = "";
 
   let selectedFile = null;
@@ -297,7 +386,9 @@
   const resultBox = document.getElementById('resultBox');
   const resultImg = document.getElementById('resultImg');
 
-  fileInput.addEventListener('change', e => {
+  dropzone.addEventListener('click', ()=> fileInput.click());
+
+  fileInput.addEventListener('change', e=>{
     if(e.target.files[0]) setFile(e.target.files[0]);
   });
 
@@ -309,10 +400,6 @@
   });
   dropzone.addEventListener('drop', e=>{
     if(e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
-  });
-
-  dropzone.addEventListener('click', e=>{
-    fileInput.click();
   });
 
   function setFile(file){
@@ -346,7 +433,7 @@
     if(!selectedFile){ setStatus('Upload a product photo first.', 'err'); return; }
     if(!selectedCategory){ setStatus('Pick a category.', 'err'); return; }
     if(!selectedModel){ setStatus('Pick a model.', 'err'); return; }
-    if(!WEBHOOK_URL){ setStatus('Webhook URL not set yet — add it in the script.', 'err'); return; }
+    if(!WEBHOOK_URL){ setStatus('Webhook URL not set yet.', 'err'); return; }
 
     runBtn.disabled = true;
     setStatus('Sending to studio… this can take a minute.', '');
