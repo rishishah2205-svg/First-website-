@@ -307,6 +307,7 @@
     .stat:last-child{border-bottom:none;}
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.3/dist/heic2any.min.js"></script>
 </head>
 <body>
 <div class="glow"></div>
@@ -402,7 +403,23 @@
     if(e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
   });
 
-  function setFile(file){
+  async function setFile(file){
+    // Auto-convert HEIC/HEIF to JPG so preview + upload always work
+    const isHeic = /\.(heic|heif)$/i.test(file.name) || file.type === 'image/heic' || file.type === 'image/heif';
+
+    if(isHeic){
+      dzText.innerHTML = `<b>Converting ${file.name}…</b><span>Please wait</span>`;
+      try{
+        const convertedBlob = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 });
+        const newName = file.name.replace(/\.(heic|heif)$/i, '.jpg');
+        file = new File([convertedBlob], newName, { type: 'image/jpeg' });
+      }catch(err){
+        setStatus('Could not convert HEIC file. Try a JPG/PNG instead.', 'err');
+        dzText.innerHTML = `<b>Tap to upload</b><span>JPG or PNG, product-only shots work best</span>`;
+        return;
+      }
+    }
+
     selectedFile = file;
     const reader = new FileReader();
     reader.onload = ev=>{
