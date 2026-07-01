@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gen Autonomous — Studio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap');
+
+  :root{
+    --bg:#0a0a0d;
+    --panel:rgba(255,255,255,0.04);
+    --panel-border:rgba(255,255,255,0.09);
+    --text:#f3f1ee;
+    --muted:#8d8a92;
+    --grad-a:#5b6ee8;
+    --grad-b:#c45b8c;
+    --grad-c:#e0a458;
+    --grad-d:#3fb6a8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  .glow{
+    position:fixed;
+    top:-32%;
+    left:50%;
+    transform:translateX(-50%);
+    width:1300px;
+    height:820px;
+    background:
+      radial-gradient(circle at 22% 28%, rgba(91,110,232,0.5), transparent 52%),
+      radial-gradient(circle at 68% 22%, rgba(196,91,140,0.42), transparent 50%),
+      radial-gradient(circle at 50% 55%, rgba(224,164,88,0.3), transparent 55%),
+      radial-gradient(circle at 82% 65%, rgba(63,182,168,0.36), transparent 52%),
+      radial-gradient(circle at 12% 70%, rgba(120,90,220,0.3), transparent 50%);
+    filter:blur(70px);
+    z-index:0;
+    pointer-events:none;
+  }
+  .glow-bottom{
+    position:fixed;
+    bottom:-25%;
+    left:50%;
+    transform:translateX(-50%);
+    width:1000px;
+    height:600px;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(91,110,232,0.22), transparent 55%),
+      radial-gradient(circle at 70% 50%, rgba(196,91,140,0.2), transparent 55%);
+    filter:blur(80px);
+    z-index:0;
+    pointer-events:none;
+  }
+
+  nav{
+    position:relative;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 24px;
+  }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .credit-pill{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--text);
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    backdrop-filter:blur(20px);
+    padding:8px 13px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:border-color .15s ease;
+  }
+  .credit-pill:hover{border-color:rgba(255,255,255,0.25);}
+  .credit-pill .bolt{color:var(--grad-c);font-size:12px;}
+
+  .account-btn{
+    width:34px;height:34px;
+    border-radius:50%;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    backdrop-filter:blur(20px);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    font-size:14px;
+    color:var(--muted);
+    padding:0;
+    transition:border-color .15s ease;
+  }
+  .account-btn:hover{border-color:rgba(255,255,255,0.25);}
+
+  .nav-dropdown-wrap{position:relative;}
+  .nav-dropdown{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+    width:230px;
+    background:#0e0e13;
+    border:1px solid var(--panel-border);
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    display:none;
+    z-index:40;
+  }
+  .nav-dropdown.show{display:block;}
+  .nd-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nd-row:last-of-type{border-bottom:none;}
+  .nd-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+  .nd-value{font-size:13.5px;font-weight:600;color:var(--text);}
+  .nd-value.plan-free{color:var(--muted);font-weight:500;}
+  .nd-buy{
+    width:100%;
+    margin-top:14px;
+    font-size:12.5px;
+    font-weight:600;
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    color:#fff;
+    border:none;
+    border-radius:30px;
+    padding:11px;
+    cursor:pointer;
+  }
+  .nd-buy:hover{opacity:.9;}
+
+  .account-dropdown .nd-item{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    color:var(--text);
+    font-size:13.5px;
+    font-family:inherit;
+    padding:11px 4px;
+    cursor:pointer;
+    border-radius:8px;
+  }
+  .account-dropdown .nd-item:hover{background:rgba(255,255,255,0.06);}
+  .account-dropdown .nd-item.muted{color:var(--muted);font-size:11.5px;cursor:default;}
+  .account-dropdown .nd-item.muted:hover{background:none;}
+
+  .brand{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:17px;
+    letter-spacing:-0.01em;
+  }
+  .brand::after{content:".";color:var(--grad-c);}
+
+  .wrap{
+    position:relative;
+    z-index:2;
+    max-width:680px;
+    margin:0 auto;
+    padding:60px 24px 100px;
+  }
+
+  .eyebrow{
+    text-align:center;
+    font-size:11.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    text-align:center;
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.0;
+    letter-spacing:-0.03em;
+    margin:0 0 22px;
+    background:linear-gradient(180deg,#ffffff 0%,#a8a5ae 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .sub{
+    text-align:center;
+    font-size:15px;
+    color:var(--muted);
+    max-width:38ch;
+    margin:0 auto 44px;
+    line-height:1.6;
+    font-weight:400;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    backdrop-filter:blur(20px);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:56px;
+  }
+  .stat{
+    padding:16px 18px;
+    border-right:1px solid var(--panel-border);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-label{
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:5px;
+  }
+  .stat-value{font-size:14px;font-weight:600;}
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:18px;
+    backdrop-filter:blur(20px);
+    padding:28px;
+    margin-bottom:18px;
+  }
+
+  .card-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .card-label .n{
+    width:20px;height:20px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10.5px;
+    color:var(--text);
+    flex-shrink:0;
+  }
+
+  /* Upload modal */
+  .upload-trigger{
+    border:1.5px dashed var(--panel-border);
+    border-radius:14px;
+    padding:26px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+    background:none;
+    width:100%;
+    text-align:left;
+    color:inherit;
+    font-family:inherit;
+  }
+  .upload-trigger:hover{
+    border-color:var(--grad-a);
+    background:rgba(91,110,232,0.06);
+  }
+
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(5,5,8,0.7);
+    backdrop-filter:blur(4px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+    padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .upload-modal{
+    width:100%;
+    max-width:480px;
+    background:#0e0e13;
+    border:1px solid var(--panel-border);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  .modal-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .modal-head h3{
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:17px;
+    margin:0;
+  }
+  .modal-close{
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-size:18px;
+    cursor:pointer;
+    line-height:1;
+    padding:4px;
+  }
+  .modal-close:hover{color:var(--text);}
+  .modal-tabs{
+    display:flex;
+    gap:22px;
+    border-bottom:1px solid var(--panel-border);
+    margin-bottom:20px;
+  }
+  .modal-tab{
+    font-size:13px;
+    color:var(--muted);
+    padding:0 0 11px;
+    cursor:pointer;
+    border-bottom:2px solid transparent;
+  }
+  .modal-tab.active{
+    color:var(--text);
+    border-color:var(--grad-a);
+  }
+  .modal-dropzone{
+    border:1.5px dashed var(--panel-border);
+    border-radius:14px;
+    padding:28px 20px;
+    text-align:center;
+    margin-bottom:16px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .modal-dropzone.drag{
+    border-color:var(--grad-a);
+    background:rgba(91,110,232,0.06);
+  }
+  .modal-upload-icon{
+    width:38px;height:38px;
+    margin:0 auto 12px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.06);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;
+  }
+  .modal-dropzone .dz-line{font-size:13px;color:var(--muted);}
+  .modal-dropzone .dz-line a{color:var(--grad-a);cursor:pointer;}
+  .modal-dropzone .dz-sub{font-size:11px;color:#5e5b63;margin-top:4px;}
+
+  .file-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 4px;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+  }
+  .file-row:last-of-type{border-bottom:none;}
+  .file-icon{
+    width:36px;height:36px;
+    flex-shrink:0;
+    border-radius:9px;
+    background:rgba(255,255,255,0.06);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;
+    overflow:hidden;
+  }
+  .file-icon img{width:100%;height:100%;object-fit:cover;}
+  .file-info{flex:1;min-width:0;}
+  .file-name{font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .file-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+  .file-check{
+    width:18px;height:18px;
+    border-radius:50%;
+    background:var(--grad-a);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;
+    flex-shrink:0;
+  }
+  .file-remove{
+    background:none;border:none;color:var(--muted);
+    cursor:pointer;font-size:14px;flex-shrink:0;padding:4px;
+  }
+  .file-remove:hover{color:var(--text);}
+
+  .modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:18px;
+  }
+  .modal-btn{
+    font-size:13px;
+    font-weight:600;
+    padding:11px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    border:1px solid var(--panel-border);
+    background:rgba(255,255,255,0.05);
+    color:var(--text);
+  }
+  .modal-btn.primary{
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    border-color:transparent;
+    color:#fff;
+  }
+  .modal-btn:hover{opacity:.92;}
+  .modal-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  input#fileInput, input#customModelInput{position:absolute;opacity:0;width:0;height:0;}
+
+  .thumb{
+    width:48px;height:48px;
+    flex-shrink:0;
+    border-radius:10px;
+    background:linear-gradient(135deg,#2a2a32,#1a1a20) center/cover no-repeat;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;
+    color:var(--muted);
+    border:1px solid var(--panel-border);
+  }
+  .dz-text{font-size:13.5px;color:var(--muted);}
+  .dz-text b{color:var(--text);font-weight:500;}
+  .dz-text span{display:block;color:#5e5b63;margin-top:3px;font-size:11.5px;}
+
+  .dropzone{display:none;}
+
+  .pillrow{display:flex;flex-wrap:wrap;gap:9px;}
+  .pill{
+    font-size:13px;
+    padding:11px 18px;
+    border:1px solid var(--panel-border);
+    background:rgba(255,255,255,0.03);
+    color:var(--text);
+    cursor:pointer;
+    border-radius:30px;
+    transition:all .15s ease;
+    user-select:none;
+  }
+  .pill:hover{border-color:rgba(255,255,255,0.25);}
+  .pill.active{
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    border-color:transparent;
+    color:#fff;
+    font-weight:500;
+  }
+
+  .modelgrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+  .modelcard.custom{
+    border-style:dashed;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,0.02);
+  }
+  .modelcard.custom::before{background:none;}
+  .modelcard.custom .custom-inner{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    text-align:center;
+    padding:6px;
+  }
+  .modelcard.custom .custom-icon{
+    width:26px;height:26px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.07);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .modelcard.custom .custom-label{
+    font-size:10px;
+    color:var(--muted);
+    line-height:1.3;
+  }
+  .modelcard.custom.has-img{border-style:solid;}
+  .modelcard.custom.has-img .custom-inner{display:none;}
+  .modelcard.custom span{position:relative;}
+
+  .admin-trigger{
+    display:block;
+    margin:50px auto 0;
+    font-size:11.5px;
+    color:#5e5b63;
+    background:none;
+    border:1px solid var(--panel-border);
+    border-radius:30px;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .admin-trigger:hover{color:var(--muted);border-color:rgba(255,255,255,0.2);}
+
+  .admin-modal{
+    width:100%;
+    max-width:520px;
+    max-height:86vh;
+    overflow-y:auto;
+    background:#0e0e13;
+    border:1px solid var(--panel-border);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  .admin-field{margin-bottom:16px;}
+  .admin-label{
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:7px;
+  }
+  .admin-input{
+    width:100%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    color:var(--text);
+    font-size:13px;
+    font-family:inherit;
+    padding:11px 13px;
+  }
+  .admin-input:focus{outline:none;border-color:var(--grad-a);}
+
+  .admin-cat{
+    border:1px solid var(--panel-border);
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:12px;
+  }
+  .admin-cat-head{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:12px;
+  }
+  .admin-cat-head input{flex:1;}
+  .admin-remove{
+    background:none;border:none;color:var(--muted);
+    cursor:pointer;font-size:14px;padding:6px;flex-shrink:0;
+  }
+  .admin-remove:hover{color:#e07a7a;}
+
+  .admin-models{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+  }
+  .admin-model-slot{
+    aspect-ratio:3/4;
+    border-radius:10px;
+    border:1px dashed var(--panel-border);
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    color:var(--muted);
+    background-size:cover;
+    background-position:center;
+  }
+  .admin-model-slot.filled{border-style:solid;}
+  .admin-model-slot .slot-remove{
+    position:absolute;
+    top:3px;right:3px;
+    width:16px;height:16px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+    font-size:9px;
+    display:none;
+    align-items:center;justify-content:center;
+  }
+  .admin-model-slot.filled .slot-remove{display:flex;}
+
+  .admin-add-cat{
+    width:100%;
+    font-size:13px;
+    font-weight:600;
+    background:rgba(255,255,255,0.05);
+    border:1px dashed var(--panel-border);
+    color:var(--text);
+    border-radius:12px;
+    padding:12px;
+    cursor:pointer;
+    margin-bottom:18px;
+  }
+  .admin-add-cat:hover{border-color:rgba(255,255,255,0.25);}
+
+  .admin-status{
+    font-size:12px;
+    text-align:center;
+    margin-top:10px;
+    min-height:16px;
+    color:var(--muted);
+  }
+  .admin-status.ok{color:#6fd6ad;}
+  .admin-status.err{color:#e07a7a;}
+
+  .model-hint{
+    font-size:12px;
+    color:var(--muted);
+    padding:14px 4px;
+    text-align:center;
+  }
+
+  .modelcard{
+    aspect-ratio:3/4;
+    border-radius:12px;
+    border:1px solid var(--panel-border);
+    cursor:pointer;
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    padding:9px;
+    transition:border-color .15s ease, transform .15s ease;
+    overflow:hidden;
+  }
+  .modelcard:nth-child(1)::before{background:linear-gradient(150deg,#3a3550,#1a1822);}
+  .modelcard:nth-child(2)::before{background:linear-gradient(150deg,#4a2f3d,#1f1620);}
+  .modelcard:nth-child(3)::before{background:linear-gradient(150deg,#3d3a26,#1c1a14);}
+  .modelcard:nth-child(4)::before{background:linear-gradient(150deg,#254038,#131f1c);}
+  .modelcard:nth-child(5)::before{background:linear-gradient(150deg,#2f3550,#161822);}
+  .modelcard:nth-child(6)::before{background:linear-gradient(150deg,#452f4a,#1e1620);}
+  .modelcard::before{
+    content:"";
+    position:absolute;inset:0;
+  }
+  .modelcard:hover{transform:translateY(-2px);}
+  .modelcard.active{border-color:var(--grad-c);border-width:1.5px;}
+  .modelcard span{
+    position:relative;
+    font-size:10.5px;
+    color:var(--text);
+    background:rgba(10,10,13,.55);
+    backdrop-filter:blur(6px);
+    padding:3px 8px;
+    border-radius:6px;
+  }
+  .modelcard.active span{background:var(--grad-c);color:#1a1408;font-weight:600;}
+
+  button.run{
+    width:100%;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.01em;
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    color:#fff;
+    border:none;
+    border-radius:30px;
+    padding:17px 24px;
+    cursor:pointer;
+    transition:opacity .15s ease, transform .15s ease;
+    margin-top:8px;
+  }
+  button.run:hover{opacity:.9;}
+  button.run:active{transform:scale(.98);}
+  button.run:disabled{background:#2a2a30;color:var(--muted);cursor:not-allowed;}
+
+  .status{
+    font-size:12.5px;
+    color:var(--muted);
+    min-height:18px;
+    text-align:center;
+    margin-top:14px;
+  }
+  .status.err{color:#e07a7a;}
+  .status.ok{color:#6fd6ad;}
+
+  .result{
+    margin-top:18px;
+    display:none;
+  }
+  .result.show{display:block;}
+  .result img{
+    width:100%;
+    display:block;
+    border-radius:18px;
+    border:1px solid var(--panel-border);
+  }
+
+  .pricing-section{
+    margin-top:64px;
+  }
+  .pricing-head{
+    text-align:center;
+    margin-bottom:30px;
+  }
+  .pricing-head h2{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:clamp(26px,5vw,34px);
+    letter-spacing:-0.02em;
+    margin:0 0 8px;
+  }
+  .pricing-head p{
+    font-size:13.5px;
+    color:var(--muted);
+    margin:0;
+  }
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .price-card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:18px;
+    backdrop-filter:blur(20px);
+    padding:24px 20px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .price-card.popular{
+    border-color:rgba(196,91,140,0.5);
+    background:linear-gradient(180deg, rgba(91,110,232,0.10), rgba(196,91,140,0.06));
+  }
+  .price-badge{
+    position:absolute;
+    top:-11px;
+    left:20px;
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    color:#fff;
+    font-size:10.5px;
+    font-weight:600;
+    padding:4px 12px;
+    border-radius:20px;
+    letter-spacing:.02em;
+  }
+  .price-name{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:10px;
+  }
+  .price-amount{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:30px;
+    letter-spacing:-0.02em;
+    margin-bottom:4px;
+  }
+  .price-amount span{
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .price-desc{
+    font-size:11.5px;
+    color:var(--muted);
+    line-height:1.5;
+    margin-bottom:18px;
+    min-height:32px;
+  }
+  .price-features{
+    list-style:none;
+    padding:0;
+    margin:0 0 20px;
+    flex:1;
+  }
+  .price-features li{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    font-size:12px;
+    color:var(--text);
+    margin-bottom:9px;
+    line-height:1.4;
+  }
+  .price-features li::before{
+    content:"✓";
+    color:var(--grad-d);
+    font-size:11px;
+    font-weight:700;
+    flex-shrink:0;
+    margin-top:1px;
+  }
+  .price-cta{
+    width:100%;
+    font-size:13px;
+    font-weight:600;
+    background:rgba(255,255,255,0.06);
+    color:var(--text);
+    border:1px solid var(--panel-border);
+    border-radius:30px;
+    padding:13px 18px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .price-cta:hover{border-color:rgba(255,255,255,0.3);}
+  .price-card.popular .price-cta{
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    border-color:transparent;
+    color:#fff;
+  }
+  .price-card.popular .price-cta:hover{opacity:.9;}
+
+  @media (max-width:560px){
+    .price-card.popular{order:-1;}
+  }
+
+  .pricing-tabs{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:24px;
+  }
+  .pricing-tab{
+    font-size:12.5px;
+    padding:9px 18px;
+    border:1px solid var(--panel-border);
+    background:rgba(255,255,255,0.03);
+    color:var(--muted);
+    cursor:pointer;
+    border-radius:30px;
+    transition:all .15s ease;
+  }
+  .pricing-tab.active{
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    border-color:transparent;
+    color:#fff;
+    font-weight:600;
+  }
+  .pricing-panel{display:none;flex-direction:column;gap:14px;}
+  .pricing-panel.active{display:flex;}
+  .price-per{font-size:11px;color:var(--muted);margin-bottom:10px;}
+  .price-save{
+    display:inline-block;
+    font-size:10px;
+    font-weight:600;
+    color:#6fd6ad;
+    background:rgba(111,214,173,0.12);
+    padding:3px 9px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+  .price-warn{
+    font-size:10.5px;
+    color:#e0a458;
+    margin-bottom:10px;
+  }
+  .bundle-was{
+    font-size:12px;
+    color:#5e5b63;
+    text-decoration:line-through;
+    margin-right:6px;
+  }
+  .pricing-note{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:16px;
+    line-height:1.6;
+  }
+
+  .config-note{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--panel-border);
+    font-size:11.5px;
+    color:#5e5b63;
+    line-height:1.6;
+    text-align:center;
+  }
+  .config-note code{
+    background:rgba(255,255,255,0.06);
+    padding:2px 6px;
+    border-radius:5px;
+    color:var(--muted);
+  }
+
+  /* ---- Studio mode tabs ---- */
+  .mode-tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .mode-tab{
+    font-size:12px;
+    font-weight:600;
+    padding:11px 8px;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    color:var(--muted);
+    border-radius:14px;
+    cursor:pointer;
+    text-align:center;
+    transition:all .15s ease;
+    line-height:1.3;
+  }
+  .mode-tab .tab-icon{display:block;font-size:16px;margin-bottom:3px;}
+  .mode-tab.active{
+    border-color:var(--grad-a);
+    color:var(--text);
+    background:rgba(91,110,232,0.1);
+  }
+  .mode-panel{display:none;}
+  .mode-panel.active{display:block;}
+
+  /* ---- Dual upload row ---- */
+  .upload-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:4px;
+  }
+  .upload-mini{
+    border:1.5px dashed var(--panel-border);
+    border-radius:14px;
+    padding:14px 10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+    text-align:center;
+  }
+  .upload-mini:hover{border-color:var(--grad-a);background:rgba(91,110,232,0.05);}
+  .upload-mini .mini-thumb{
+    width:54px;height:54px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.05);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+    background-size:cover;background-position:center;
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .upload-mini .mini-label{font-size:11.5px;font-weight:600;color:var(--text);}
+  .upload-mini .mini-sub{font-size:10.5px;color:var(--muted);}
+  .upload-mini.has-img{border-style:solid;border-color:rgba(255,255,255,0.18);}
+
+  /* ---- Prompt section ---- */
+  .prompt-section{margin-top:4px;}
+  .prompt-toggle{
+    display:flex;
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--panel-border);
+    border-radius:30px;
+    padding:3px;
+    margin-bottom:12px;
+    gap:3px;
+  }
+  .ptog-btn{
+    flex:1;
+    font-size:12px;
+    font-weight:600;
+    padding:8px;
+    border-radius:26px;
+    border:none;
+    background:none;
+    color:var(--muted);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .ptog-btn.active{
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    color:#fff;
+  }
+  .prompt-auto{
+    font-size:12px;
+    color:var(--muted);
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--panel-border);
+    border-radius:12px;
+    padding:12px 13px;
+    line-height:1.5;
+  }
+  .prompt-auto span{color:var(--grad-d);font-weight:600;}
+  .prompt-custom{display:none;}
+  .prompt-custom textarea{
+    width:100%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--panel-border);
+    border-radius:12px;
+    color:var(--text);
+    font-size:13px;
+    font-family:inherit;
+    padding:12px 13px;
+    resize:none;
+    min-height:90px;
+    line-height:1.5;
+  }
+  .prompt-custom textarea:focus{outline:none;border-color:var(--grad-a);}
+  .prompt-custom textarea::placeholder{color:#5e5b63;}
+  .prompt-required .prompt-custom{display:block;}
+  .prompt-required .prompt-toggle{display:none;}
+  .prompt-required .prompt-auto{display:none;}
+  .req-label{
+    font-size:11px;
+    color:#e07a7a;
+    margin-bottom:8px;
+    font-weight:600;
+    letter-spacing:.04em;
+  }
+
+  /* ---- Quality selector ---- */
+  .quality-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .quality-btn{
+    flex:1;
+    min-width:0;
+    font-size:12px;
+    font-weight:600;
+    padding:10px 6px;
+    border:1px solid var(--panel-border);
+    background:rgba(255,255,255,0.03);
+    color:var(--muted);
+    border-radius:12px;
+    cursor:pointer;
+    text-align:center;
+    transition:all .15s ease;
+  }
+  .quality-btn .q-label{display:block;font-size:10px;font-weight:400;color:#5e5b63;margin-top:2px;}
+  .quality-btn.active{
+    border-color:var(--grad-d);
+    color:var(--text);
+    background:rgba(63,182,168,0.08);
+  }
+
+  /* ---- Duration slider ---- */
+  .duration-wrap{display:flex;flex-direction:column;gap:10px;}
+  .duration-display{
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+  }
+  .duration-num{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:28px;
+    color:var(--text);
+  }
+  .duration-unit{font-size:13px;color:var(--muted);}
+  .duration-max{font-size:11px;color:#5e5b63;margin-left:auto;}
+  input[type=range]{
+    -webkit-appearance:none;
+    width:100%;
+    height:4px;
+    border-radius:4px;
+    background:linear-gradient(90deg, var(--grad-a) 0%, var(--grad-b) 100%);
+    outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:18px;height:18px;
+    border-radius:50%;
+    background:#fff;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  /* ---- Resolution pill for video ---- */
+  .res-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:12px;
+    color:var(--grad-d);
+    background:rgba(63,182,168,0.1);
+    border:1px solid rgba(63,182,168,0.2);
+    padding:5px 12px;
+    border-radius:20px;
+  }
+
+  @media (max-width:480px){
+    .modelgrid{grid-template-columns:repeat(2,1fr);}
+    .stats{grid-template-columns:1fr;}
+    .stat{border-right:none;border-bottom:1px solid var(--panel-border);}
+    .stat:last-child{border-bottom:none;}
+    .upload-row{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="glow-bottom"></div>
+
+<nav>
+  <div class="brand">Gen Autonomous</div>
+  <div class="nav-right">
+
+    <div class="nav-dropdown-wrap">
+      <button type="button" class="credit-pill" id="creditPillBtn">
+        <span class="bolt">⚡</span><span id="creditPillText">0 credits</span>
+      </button>
+      <div class="nav-dropdown" id="creditDropdown">
+        <div class="nd-row">
+          <span class="nd-label">Credits</span>
+          <span class="nd-value" id="ndCreditsValue">0</span>
+        </div>
+        <div class="nd-row">
+          <span class="nd-label">Plan</span>
+          <span class="nd-value plan-free" id="ndPlanValue">Free tier</span>
+        </div>
+        <button type="button" class="nd-buy" id="ndBuyBtn">Buy credits</button>
+      </div>
+    </div>
+
+    <div class="nav-dropdown-wrap">
+      <button type="button" class="account-btn" id="accountBtn">●</button>
+      <div class="nav-dropdown account-dropdown" id="accountDropdown">
+        <div class="nd-item muted">Not signed in</div>
+        <button type="button" class="nd-item">Log in</button>
+        <button type="button" class="nd-item">Sign up</button>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="eyebrow">AI Fashion Studio</div>
+  <h1>Your product,<br>on a model.</h1>
+  <p class="sub">Choose your output type, upload your product, run the studio.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Output</div><div class="stat-value" id="statOutput">HD Image</div></div>
+    <div class="stat"><div class="stat-label">Avg. time</div><div class="stat-value">~60 sec</div></div>
+    <div class="stat"><div class="stat-label">Categories</div><div class="stat-value" id="statCats">3</div></div>
+  </div>
+
+  <!-- hidden file inputs -->
+  <input type="file" id="fileInput" accept="image/*" style="position:absolute;opacity:0;width:0;height:0;">
+  <input type="file" id="customModelInput" accept="image/*" style="position:absolute;opacity:0;width:0;height:0;">
+  <input type="file" id="productOnlyInput" accept="image/*" style="position:absolute;opacity:0;width:0;height:0;">
+  <input type="file" id="videoProductInput" accept="image/*" style="position:absolute;opacity:0;width:0;height:0;">
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <div class="mode-tab active" data-mode="image">
+      <span class="tab-icon">🖼</span>Image + Model
+    </div>
+    <div class="mode-tab" data-mode="video">
+      <span class="tab-icon">🎬</span>Video
+    </div>
+    <div class="mode-tab" data-mode="product">
+      <span class="tab-icon">✨</span>Product Only
+    </div>
+  </div>
+
+  <!-- ===== MODE 1: IMAGE WITH MODEL ===== -->
+  <div class="mode-panel active" id="panel-image">
+
+    <div class="card">
+      <div class="card-label"><span class="n">1</span>Upload photos</div>
+      <div class="upload-row">
+        <div class="upload-mini" id="imgProductTrigger">
+          <div class="mini-thumb" id="imgProductThumb">📦</div>
+          <div class="mini-label">Product image</div>
+          <div class="mini-sub">JPG or PNG</div>
+        </div>
+        <div class="upload-mini" id="imgModelTrigger">
+          <div class="mini-thumb" id="imgModelThumb">🧍</div>
+          <div class="mini-label">Custom model</div>
+          <div class="mini-sub">Optional — or pick below</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">2</span>Choose category</div>
+      <div class="pillrow" id="categoryRow"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">3</span>Choose model</div>
+      <div class="modelgrid" id="modelGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">4</span>Prompt</div>
+      <div class="prompt-section" id="imgPromptSection">
+        <div class="prompt-toggle">
+          <button type="button" class="ptog-btn active" data-target="imgPromptSection" data-type="auto">⚡ Automatic</button>
+          <button type="button" class="ptog-btn" data-target="imgPromptSection" data-type="custom">✏ Custom</button>
+        </div>
+        <div class="prompt-auto">
+          <span>Auto prompt</span> — AI generates the best prompt based on your category and model selection.
+        </div>
+        <div class="prompt-custom">
+          <textarea id="imgCustomPrompt" placeholder="Describe the scene, lighting, pose, background..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">5</span>Output quality</div>
+      <div class="quality-row" id="imgQuality">
+        <button type="button" class="quality-btn active" data-val="1080p">1080p<span class="q-label">Full HD</span></button>
+        <button type="button" class="quality-btn" data-val="2K">2K<span class="q-label">Quad HD</span></button>
+        <button type="button" class="quality-btn" data-val="4K">4K<span class="q-label">Ultra HD</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== MODE 2: VIDEO ===== -->
+  <div class="mode-panel" id="panel-video">
+
+    <div class="card">
+      <div class="card-label"><span class="n">1</span>Upload product image</div>
+      <div class="upload-mini" id="videoProductTrigger" style="flex-direction:row;gap:14px;padding:16px 14px;">
+        <div class="mini-thumb" id="videoProductThumb">📦</div>
+        <div>
+          <div class="mini-label">Product image</div>
+          <div class="mini-sub" style="margin-top:3px;">JPG or PNG, product-only shot works best</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">2</span>Choose category</div>
+      <div class="pillrow" id="vidCategoryRow"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">3</span>Choose model</div>
+      <div class="modelgrid" id="vidModelGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">4</span>Duration</div>
+      <div class="duration-wrap">
+        <div class="duration-display">
+          <span class="duration-num" id="durDisplay">5</span>
+          <span class="duration-unit">sec</span>
+          <span class="duration-max">Max 15 sec</span>
+        </div>
+        <input type="range" id="durSlider" min="3" max="15" value="5" step="1">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">5</span>Resolution</div>
+      <div class="res-pill">🎬 1080p — max for video</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">6</span>Prompt</div>
+      <div class="prompt-section" id="vidPromptSection">
+        <div class="prompt-toggle">
+          <button type="button" class="ptog-btn active" data-target="vidPromptSection" data-type="auto">⚡ Automatic</button>
+          <button type="button" class="ptog-btn" data-target="vidPromptSection" data-type="custom">✏ Custom</button>
+        </div>
+        <div class="prompt-auto">
+          <span>Auto prompt</span> — AI generates smooth motion and scene based on your garment and model.
+        </div>
+        <div class="prompt-custom">
+          <textarea id="vidCustomPrompt" placeholder="Describe the motion, background, lighting, camera angle..."></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== MODE 3: PRODUCT ONLY ===== -->
+  <div class="mode-panel" id="panel-product">
+
+    <div class="card">
+      <div class="card-label"><span class="n">1</span>Upload product image</div>
+      <div class="upload-mini" id="productOnlyTrigger" style="flex-direction:row;gap:14px;padding:16px 14px;">
+        <div class="mini-thumb" id="productOnlyThumb">📦</div>
+        <div>
+          <div class="mini-label">Product image</div>
+          <div class="mini-sub" style="margin-top:3px;">Clean product shot, no background preferred</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">2</span>Your prompt <span style="color:#e07a7a;font-size:10px;font-weight:600;margin-left:6px;">REQUIRED</span></div>
+      <div class="prompt-section prompt-required">
+        <div class="req-label">Tell us how to display your product</div>
+        <div class="prompt-custom" style="display:block;">
+          <textarea id="productPrompt" placeholder="e.g. Floating Kurta on a marble studio surface, soft rim lighting from the left, dark background with subtle bokeh..." style="min-height:110px;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="n">3</span>Output quality</div>
+      <div class="quality-row" id="prodQuality">
+        <button type="button" class="quality-btn active" data-val="1080p">1080p<span class="q-label">Full HD</span></button>
+        <button type="button" class="quality-btn" data-val="2K">2K<span class="q-label">Quad HD</span></button>
+        <button type="button" class="quality-btn" data-val="4K">4K<span class="q-label">Ultra HD</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="run" id="runBtn">Run studio</button>
+  <div class="status" id="statusText"></div>
+
+  <div class="result" id="resultBox">
+    <img id="resultImg" src="" alt="Generated result">
+  </div>
+
+  <div class="pricing-section" id="pricing">
+    <div class="pricing-head">
+      <h2>No studio. No model.<br>Just results.</h2>
+      <p>AI product visuals — pick image packs, video packs, or save with a bundle.</p>
+    </div>
+
+    <div class="pricing-tabs">
+      <div class="pricing-tab active" data-panel="images">Images</div>
+      <div class="pricing-tab" data-panel="videos">Videos</div>
+      <div class="pricing-tab" data-panel="bundles">Bundles</div>
+    </div>
+
+    <div class="pricing-panel active" id="panel-images">
+
+      <div class="price-card">
+        <div class="price-name">Trial · First look</div>
+        <div class="price-amount">₹399</div>
+        <div class="price-per">5 images · ₹80/image</div>
+        <div class="price-warn">⚠ Max 2 purchases</div>
+        <ul class="price-features">
+          <li>5 AI on-model images</li>
+          <li>1080p resolution</li>
+          <li>48hr delivery</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Starter · Small sellers</div>
+        <div class="price-amount">₹2,999</div>
+        <div class="price-per">50 images · ₹60/image</div>
+        <div class="price-save">Save 17%</div>
+        <ul class="price-features">
+          <li>50 AI on-model images</li>
+          <li>1080p resolution</li>
+          <li>48hr delivery</li>
+          <li>Standard support</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card popular">
+        <div class="price-badge">Popular</div>
+        <div class="price-name">Growth · Regular drops</div>
+        <div class="price-amount">₹4,999</div>
+        <div class="price-per">100 images · ₹50/image</div>
+        <div class="price-save">Save 43%</div>
+        <ul class="price-features">
+          <li>100 AI on-model images</li>
+          <li>1080p resolution</li>
+          <li>24hr delivery</li>
+          <li>Priority processing</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Pro · Scaling fast</div>
+        <div class="price-amount">₹8,499</div>
+        <div class="price-per">250 images · ₹34/image</div>
+        <div class="price-save">Save 45%</div>
+        <ul class="price-features">
+          <li>250 AI on-model images</li>
+          <li>1080p resolution</li>
+          <li>Same day delivery</li>
+          <li>Priority processing</li>
+          <li>Dedicated support</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Elite · High-volume</div>
+        <div class="price-amount">₹11,499</div>
+        <div class="price-per">350 images · ₹33/image</div>
+        <ul class="price-features">
+          <li>350 AI on-model images</li>
+          <li>1080p resolution</li>
+          <li>Same day delivery</li>
+          <li>Express processing</li>
+          <li>WhatsApp support</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+    </div>
+
+    <div class="pricing-panel" id="panel-videos">
+
+      <div class="price-card">
+        <div class="price-name">Trial · Try risk-free</div>
+        <div class="price-amount">₹999</div>
+        <div class="price-per">3 videos · ₹333/video</div>
+        <div class="price-warn">⚠ Max 2 purchases</div>
+        <ul class="price-features">
+          <li>3 videos, 15 sec each</li>
+          <li>1080p quality</li>
+          <li>On-model motion</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Starter · Test videos</div>
+        <div class="price-amount">₹1,999</div>
+        <div class="price-per">5 videos · ₹400/video</div>
+        <div class="price-save">Save 17%</div>
+        <ul class="price-features">
+          <li>5 videos, 15 sec each</li>
+          <li>1080p quality</li>
+          <li>Instagram ready</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card popular">
+        <div class="price-badge">Popular</div>
+        <div class="price-name">Growth · Post regularly</div>
+        <div class="price-amount">₹4,999</div>
+        <div class="price-per">15 videos · ₹333/video</div>
+        <div class="price-save">Save 15%</div>
+        <ul class="price-features">
+          <li>15 videos, 15 sec each</li>
+          <li>1080p quality</li>
+          <li>Priority processing</li>
+          <li>Social media formats</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Pro · Campaigns</div>
+        <div class="price-amount">₹8,499</div>
+        <div class="price-per">30 videos · ₹283/video</div>
+        <div class="price-save">Save 22%</div>
+        <ul class="price-features">
+          <li>30 videos, 15 sec each</li>
+          <li>1080p quality</li>
+          <li>Express processing</li>
+          <li>Dedicated support</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Elite · High-volume</div>
+        <div class="price-amount">₹12,999</div>
+        <div class="price-per">50 videos · ₹260/video</div>
+        <ul class="price-features">
+          <li>50 videos, 15 sec each</li>
+          <li>1080p quality</li>
+          <li>Same day delivery</li>
+          <li>WhatsApp support</li>
+        </ul>
+        <button class="price-cta">Get started</button>
+      </div>
+
+      <div class="pricing-note">⚠ Trial packs are limited to 2 purchases per customer to ensure fair access for everyone.</div>
+
+    </div>
+
+    <div class="pricing-panel" id="panel-bundles">
+
+      <div class="price-card">
+        <div class="price-name">Starter Bundle · 10% off</div>
+        <div class="price-per"><span class="bundle-was">₹4,998</span><span class="price-amount" style="font-size:20px;">₹4,498</span></div>
+        <div class="price-save">Save ₹500</div>
+        <ul class="price-features">
+          <li>50 AI on-model images</li>
+          <li>5 product videos, 15 sec</li>
+          <li>1080p resolution</li>
+          <li>48hr delivery</li>
+          <li>Standard support</li>
+        </ul>
+        <button class="price-cta">Order via WhatsApp</button>
+      </div>
+
+      <div class="price-card popular">
+        <div class="price-badge">12% off</div>
+        <div class="price-name">Pro Bundle</div>
+        <div class="price-per"><span class="bundle-was">₹13,498</span><span class="price-amount" style="font-size:20px;">₹11,878</span></div>
+        <div class="price-save">Save ₹1,620</div>
+        <ul class="price-features">
+          <li>250 AI on-model images</li>
+          <li>15 product videos, 15 sec</li>
+          <li>1080p resolution</li>
+          <li>Same day delivery</li>
+          <li>Priority processing</li>
+          <li>Dedicated support</li>
+        </ul>
+        <button class="price-cta">Order via WhatsApp</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Elite Bundle · 15% off</div>
+        <div class="price-per"><span class="bundle-was">₹24,498</span><span class="price-amount" style="font-size:20px;">₹20,823</span></div>
+        <div class="price-save">Save ₹3,675</div>
+        <ul class="price-features">
+          <li>350 AI on-model images</li>
+          <li>50 product videos, 15 sec</li>
+          <li>1080p resolution</li>
+          <li>Express delivery</li>
+          <li>WhatsApp support</li>
+          <li>Top priority queue</li>
+        </ul>
+        <button class="price-cta">Order via WhatsApp</button>
+      </div>
+
+      <div class="pricing-note">One-time purchase — no subscriptions. WhatsApp us to place your bundle order.</div>
+
+    </div>
+
+  </div>
+
+  <button type="button" class="admin-trigger" id="adminTrigger">⚙ Studio admin</button>
+  <div class="config-note" id="configNote">
+    Webhook not connected. Owner can set it from Studio admin below.
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="upload-modal">
+    <div class="modal-head">
+      <h3>Upload files</h3>
+      <button class="modal-close" id="modalCloseBtn">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <div class="modal-tab" data-tab="drive">Drive</div>
+      <div class="modal-tab active" data-tab="device">Your device</div>
+      <div class="modal-tab" data-tab="embed">Embed link</div>
+    </div>
+    <div class="modal-dropzone" id="modalDropzone">
+      <div class="modal-upload-icon">⬆</div>
+      <div class="dz-line">Drag and drop or <a id="selectFilesLink">select files</a></div>
+      <div class="dz-sub">Max file size: 100MB</div>
+    </div>
+    <div id="fileList"></div>
+    <div class="modal-actions">
+      <button class="modal-btn" id="modalCancelBtn">Cancel</button>
+      <button class="modal-btn primary" id="modalUploadBtn" disabled>Upload</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="adminOverlay">
+  <div class="admin-modal">
+    <div class="modal-head">
+      <h3>Studio admin</h3>
+      <button class="modal-close" id="adminCloseBtn">✕</button>
+    </div>
+
+    <div class="admin-field">
+      <div class="admin-label">Your n8n webhook URL</div>
+      <input type="text" class="admin-input" id="adminWebhookInput" placeholder="https://your-n8n-instance.com/webhook/...">
+    </div>
+
+    <div class="admin-field">
+      <div class="admin-label">Categories &amp; models</div>
+      <div id="adminCatList"></div>
+      <button type="button" class="admin-add-cat" id="adminAddCat">+ Add category</button>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-btn" id="adminCancelBtn">Cancel</button>
+      <button class="modal-btn primary" id="adminSaveBtn">Save &amp; sync</button>
+    </div>
+    <div class="admin-status" id="adminStatus"></div>
+  </div>
+</div>
+
+<script>
+  const WEBHOOK_URL = "";
+
+  // ---- State ----
+  let activeMode = 'image'; // image | video | product
+  let files = { imgProduct:null, imgModel:null, vidProduct:null, productOnly:null };
+  let dataUrls = { imgProduct:null, imgModel:null, vidProduct:null, productOnly:null };
+  let selectedCategory = null;
+  let selectedModel = null;
+  let vidSelectedCategory = null;
+  let vidSelectedModel = null;
+  let imgQuality = '1080p';
+  let prodQuality = '1080p';
+  let videoDuration = 5;
+  let imgPromptMode = 'auto';
+  let vidPromptMode = 'auto';
+
+  const statusText = document.getElementById('statusText');
+  const runBtn = document.getElementById('runBtn');
+  const resultBox = document.getElementById('resultBox');
+  const resultImg = document.getElementById('resultImg');
+
+  // ---- Mode tabs ----
+  document.querySelectorAll('.mode-tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.mode-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      activeMode = tab.dataset.mode;
+      document.getElementById('panel-'+activeMode).classList.add('active');
+      const labels = {image:'HD Image', video:'1080p Video', product:'Product Shot'};
+      document.getElementById('statOutput').textContent = labels[activeMode];
+    });
+  });
+
+  // ---- Mini upload helper ----
+  function bindMiniUpload(triggerId, inputId, thumbId, fileKey){
+    const trigger = document.getElementById(triggerId);
+    const input = document.getElementById(inputId);
+    const thumb = document.getElementById(thumbId);
+    if(!trigger || !input || !thumb) return;
+    trigger.addEventListener('click', ()=> input.click());
+    input.addEventListener('change', e=>{
+      const f = e.target.files[0];
+      if(!f) return;
+      files[fileKey] = f;
+      const reader = new FileReader();
+      reader.onload = ev=>{
+        dataUrls[fileKey] = ev.target.result;
+        thumb.style.backgroundImage = `url(${ev.target.result})`;
+        thumb.textContent = '';
+        trigger.classList.add('has-img');
+      };
+      reader.readAsDataURL(f);
+    });
+  }
+  bindMiniUpload('imgProductTrigger','fileInput','imgProductThumb','imgProduct');
+  bindMiniUpload('imgModelTrigger','customModelInput','imgModelThumb','imgModel');
+  bindMiniUpload('videoProductTrigger','videoProductInput','videoProductThumb','vidProduct');
+  bindMiniUpload('productOnlyTrigger','productOnlyInput','productOnlyThumb','productOnly');
+
+  // ---- Upload modal (still used for file selection in upload-trigger areas) ----
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalDropzone = document.getElementById('modalDropzone');
+  const selectFilesLink = document.getElementById('selectFilesLink');
+  const fileList = document.getElementById('fileList');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalCancelBtn = document.getElementById('modalCancelBtn');
+  const modalUploadBtn = document.getElementById('modalUploadBtn');
+
+  let pendingFile = null;
+  let pendingDataUrl = null;
+  let modalTargetKey = null;
+
+  function openModal(targetKey){
+    modalTargetKey = targetKey;
+    modalOverlay.classList.add('show');
+    fileList.innerHTML = '';
+    pendingFile = null;
+    pendingDataUrl = null;
+    modalUploadBtn.disabled = true;
+  }
+  function closeModal(){ modalOverlay.classList.remove('show'); }
+  modalCloseBtn.addEventListener('click', closeModal);
+  modalCancelBtn.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', e=>{ if(e.target===modalOverlay) closeModal(); });
+  selectFilesLink.addEventListener('click', e=>{ e.preventDefault(); document.getElementById('fileInput').click(); });
+  modalDropzone.addEventListener('click', ()=> document.getElementById('fileInput').click());
+
+  ['dragover','dragenter'].forEach(evt=>{
+    modalDropzone.addEventListener(evt, e=>{e.preventDefault(); modalDropzone.classList.add('drag');});
+  });
+  ['dragleave','drop'].forEach(evt=>{
+    modalDropzone.addEventListener(evt, e=>{e.preventDefault(); modalDropzone.classList.remove('drag');});
+  });
+  modalDropzone.addEventListener('drop', e=>{
+    if(e.dataTransfer.files[0]) handleIncomingFile(e.dataTransfer.files[0]);
+  });
+
+  function formatSize(bytes){
+    if(bytes < 1024*1024) return Math.round(bytes/1024)+' KB';
+    return (bytes/(1024*1024)).toFixed(1)+' MB';
+  }
+  function handleIncomingFile(file){
+    pendingFile = file;
+    const reader = new FileReader();
+    reader.onload = ev=>{ pendingDataUrl = ev.target.result; renderFileRow(file, pendingDataUrl); };
+    reader.readAsDataURL(file);
+  }
+  function renderFileRow(file, dataUrl){
+    fileList.innerHTML = '';
+    const row = document.createElement('div');
+    row.className = 'file-row';
+    row.innerHTML = `
+      <div class="file-icon"><img src="${dataUrl}" alt=""></div>
+      <div class="file-info">
+        <div class="file-name">${file.name}</div>
+        <div class="file-meta">${formatSize(file.size)} · Uploading…</div>
+      </div>
+      <div class="file-check" style="display:none;">✓</div>
+      <button class="file-remove" type="button">✕</button>
+    `;
+    fileList.appendChild(row);
+    const meta = row.querySelector('.file-meta');
+    const check = row.querySelector('.file-check');
+    const removeBtn = row.querySelector('.file-remove');
+    removeBtn.addEventListener('click', ()=>{
+      row.remove(); pendingFile=null; pendingDataUrl=null; modalUploadBtn.disabled=true;
+    });
+    setTimeout(()=>{
+      meta.textContent = `${formatSize(file.size)} · Uploaded`;
+      check.style.display = 'flex';
+      modalUploadBtn.disabled = false;
+    }, 650);
+  }
+  document.querySelectorAll('.modal-tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.modal-tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+  modalUploadBtn.addEventListener('click', ()=>{ closeModal(); });
+
+  // ---- Prompt toggles ----
+  document.querySelectorAll('.ptog-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const section = document.getElementById(btn.dataset.target);
+      section.querySelectorAll('.ptog-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const isCustom = btn.dataset.type === 'custom';
+      section.querySelector('.prompt-auto').style.display = isCustom ? 'none' : '';
+      section.querySelector('.prompt-custom').style.display = isCustom ? 'block' : 'none';
+      if(btn.dataset.target === 'imgPromptSection') imgPromptMode = btn.dataset.type;
+      if(btn.dataset.target === 'vidPromptSection') vidPromptMode = btn.dataset.type;
+    });
+  });
+
+  // ---- Quality selectors ----
+  function bindQuality(rowId, onSelect){
+    document.getElementById(rowId).addEventListener('click', e=>{
+      const btn = e.target.closest('.quality-btn');
+      if(!btn) return;
+      document.querySelectorAll(`#${rowId} .quality-btn`).forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      onSelect(btn.dataset.val);
+    });
+  }
+  bindQuality('imgQuality', v=>{ imgQuality=v; });
+  bindQuality('prodQuality', v=>{ prodQuality=v; });
+
+  // ---- Duration slider ----
+  const durSlider = document.getElementById('durSlider');
+  const durDisplay = document.getElementById('durDisplay');
+  durSlider.addEventListener('input', ()=>{
+    videoDuration = parseInt(durSlider.value);
+    durDisplay.textContent = videoDuration;
+  });
+
+  document.querySelectorAll('.pricing-tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.pricing-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-'+tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  // Credits + account dropdowns
+  const creditPillBtn = document.getElementById('creditPillBtn');
+  const creditDropdown = document.getElementById('creditDropdown');
+  const accountBtn = document.getElementById('accountBtn');
+  const accountDropdown = document.getElementById('accountDropdown');
+  const ndBuyBtn = document.getElementById('ndBuyBtn');
+
+  function closeAllDropdowns(){
+    creditDropdown.classList.remove('show');
+    accountDropdown.classList.remove('show');
+  }
+  creditPillBtn.addEventListener('click', e=>{
+    e.stopPropagation();
+    const willShow = !creditDropdown.classList.contains('show');
+    closeAllDropdowns();
+    if(willShow) creditDropdown.classList.add('show');
+  });
+  accountBtn.addEventListener('click', e=>{
+    e.stopPropagation();
+    const willShow = !accountDropdown.classList.contains('show');
+    closeAllDropdowns();
+    if(willShow) accountDropdown.classList.add('show');
+  });
+  document.addEventListener('click', closeAllDropdowns);
+
+  function goToPricing(){
+    closeAllDropdowns();
+    document.getElementById('pricing').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  ndBuyBtn.addEventListener('click', goToPricing);
+  document.querySelectorAll('.price-cta').forEach(btn=>{
+    btn.addEventListener('click', goToPricing);
+  });
+
+  // ---------- Admin panel ----------
+  const adminTrigger = document.getElementById('adminTrigger');
+  const adminOverlay = document.getElementById('adminOverlay');
+  const adminCloseBtn = document.getElementById('adminCloseBtn');
+  const adminCancelBtn = document.getElementById('adminCancelBtn');
+  const adminSaveBtn = document.getElementById('adminSaveBtn');
+  const adminWebhookInput = document.getElementById('adminWebhookInput');
+  const adminCatList = document.getElementById('adminCatList');
+  const adminAddCat = document.getElementById('adminAddCat');
+  const adminStatus = document.getElementById('adminStatus');
+  const configNote = document.getElementById('configNote');
+
+  let draftConfig = null;
+
+  function openAdmin(){
+    draftConfig = JSON.parse(JSON.stringify(studioConfig));
+    adminWebhookInput.value = draftConfig.webhookUrl || '';
+    adminStatus.textContent = '';
+    renderAdminCats();
+    adminOverlay.classList.add('show');
+  }
+  function closeAdmin(){ adminOverlay.classList.remove('show'); }
+  adminTrigger.addEventListener('click', openAdmin);
+  adminCloseBtn.addEventListener('click', closeAdmin);
+  adminCancelBtn.addEventListener('click', closeAdmin);
+  adminOverlay.addEventListener('click', e=>{ if(e.target === adminOverlay) closeAdmin(); });
+
+  function renderAdminCats(){
+    adminCatList.innerHTML = '';
+    draftConfig.categories.forEach((cat, cIdx)=>{
+      const wrap = document.createElement('div');
+      wrap.className = 'admin-cat';
+
+      const head = document.createElement('div');
+      head.className = 'admin-cat-head';
+      const nameInput = document.createElement('input');
+      nameInput.className = 'admin-input';
+      nameInput.value = cat.name;
+      nameInput.addEventListener('input', ()=>{ draftConfig.categories[cIdx].name = nameInput.value; });
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'admin-remove';
+      removeBtn.textContent = '✕';
+      removeBtn.addEventListener('click', ()=>{
+        draftConfig.categories.splice(cIdx, 1);
+        renderAdminCats();
+      });
+      head.appendChild(nameInput);
+      head.appendChild(removeBtn);
+      wrap.appendChild(head);
+
+      const modelsGrid = document.createElement('div');
+      modelsGrid.className = 'admin-models';
+
+      cat.models.forEach((m, mIdx)=>{
+        const slot = document.createElement('div');
+        slot.className = 'admin-model-slot' + (m.img ? ' filled' : '');
+        if(m.img) slot.style.backgroundImage = `url(${m.img})`;
+        else slot.textContent = '+';
+        const rm = document.createElement('div');
+        rm.className = 'slot-remove';
+        rm.textContent = '✕';
+        rm.addEventListener('click', ev=>{
+          ev.stopPropagation();
+          draftConfig.categories[cIdx].models.splice(mIdx, 1);
+          renderAdminCats();
+        });
+        slot.appendChild(rm);
+        slot.addEventListener('click', ev=>{
+          if(ev.target === rm) return;
+          const inp = document.createElement('input');
+          inp.type = 'file';
+          inp.accept = 'image/*';
+          inp.addEventListener('change', ()=>{
+            const f = inp.files[0];
+            if(!f) return;
+            const reader = new FileReader();
+            reader.onload = ev2=>{
+              draftConfig.categories[cIdx].models[mIdx].img = ev2.target.result;
+              renderAdminCats();
+            };
+            reader.readAsDataURL(f);
+          });
+          inp.click();
+        });
+        modelsGrid.appendChild(slot);
+      });
+
+      const addSlot = document.createElement('div');
+      addSlot.className = 'admin-model-slot';
+      addSlot.textContent = '+';
+      addSlot.title = 'Add model';
+      addSlot.addEventListener('click', ()=>{
+        draftConfig.categories[cIdx].models.push({name:'Model '+(cat.models.length+1), img:null});
+        renderAdminCats();
+      });
+      modelsGrid.appendChild(addSlot);
+
+      wrap.appendChild(modelsGrid);
+      adminCatList.appendChild(wrap);
+    });
+  }
+
+  adminAddCat.addEventListener('click', ()=>{
+    draftConfig.categories.push({ name:'New category', models:[] });
+    renderAdminCats();
+  });
+
+  adminSaveBtn.addEventListener('click', async ()=>{
+    draftConfig.webhookUrl = adminWebhookInput.value.trim();
+    studioConfig = draftConfig;
+    saveConfigLocal(studioConfig);
+    renderCategoryRow();
+    selectedCategoryIndex = null;
+    selectedCategory = null;
+    selectedModel = null;
+    renderModelGrid();
+    if(typeof renderVidCategoryRow === 'function'){ renderVidCategoryRow(); renderVidModelGrid(); }
+    configNote.textContent = studioConfig.webhookUrl
+      ? 'Webhook connected: ' + studioConfig.webhookUrl
+      : 'Webhook not connected. Owner can set it from Studio admin below.';
+
+    if(studioConfig.webhookUrl){
+      adminStatus.textContent = 'Syncing categories to n8n…';
+      adminStatus.className = 'admin-status';
+      try{
+        const res = await fetch(studioConfig.webhookUrl, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({
+            type:'studio_config_sync',
+            categories: studioConfig.categories.map(c=>({
+              name:c.name,
+              models:c.models.map(m=>({name:m.name, image:m.img}))
+            }))
+          })
+        });
+        if(!res.ok) throw new Error('Server returned ' + res.status);
+        adminStatus.textContent = 'Saved and synced to n8n.';
+        adminStatus.className = 'admin-status ok';
+      }catch(err){
+        adminStatus.textContent = 'Saved locally. Sync failed: ' + err.message;
+        adminStatus.className = 'admin-status err';
+      }
+    }else{
+      adminStatus.textContent = 'Saved locally. Add a webhook URL to sync with n8n.';
+      adminStatus.className = 'admin-status ok';
+    }
+  });
+
+  // ---------- Studio config (categories + models), editable from admin panel ----------
+  const STORAGE_KEY = 'genAutoStudioConfig';
+  const placeholderGrads = [
+    'linear-gradient(150deg,#3a3550,#1a1822)','linear-gradient(150deg,#4a2f3d,#1f1620)',
+    'linear-gradient(150deg,#3d3a26,#1c1a14)','linear-gradient(150deg,#254038,#131f1c)',
+    'linear-gradient(150deg,#2f3550,#161822)','linear-gradient(150deg,#452f4a,#1e1620)'
+  ];
+  function defaultConfig(){
+    return {
+      webhookUrl: WEBHOOK_URL || '',
+      categories: [
+        { name:'Kurta', models:[
+          {name:'Model 1', img:null},{name:'Model 2', img:null},{name:'Model 3', img:null}
+        ]},
+        { name:'Saree', models:[
+          {name:'Model 1', img:null},{name:'Model 2', img:null},{name:'Model 3', img:null}
+        ]},
+        { name:'Casual-Formal', models:[
+          {name:'Model 1', img:null},{name:'Model 2', img:null},{name:'Model 3', img:null}
+        ]}
+      ]
+    };
+  }
+  function loadConfig(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return defaultConfig();
+  }
+  function saveConfigLocal(cfg){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+  }
+  let studioConfig = loadConfig();
+  let selectedCategoryIndex = null;
+  let customModelFile = null;
+  let customModelDataUrl = null;
+
+  // ---------- Client-facing category + model rendering ----------
+  const categoryRow = document.getElementById('categoryRow');
+  const modelGrid = document.getElementById('modelGrid');
+  const customModelInput = document.getElementById('customModelInput');
+
+  function renderCategoryRow(){
+    categoryRow.innerHTML = '';
+    studioConfig.categories.forEach((cat, idx)=>{
+      const pill = document.createElement('div');
+      pill.className = 'pill';
+      pill.dataset.idx = idx;
+      pill.textContent = cat.name;
+      categoryRow.appendChild(pill);
+    });
+  }
+
+  function renderModelGrid(){
+    modelGrid.innerHTML = '';
+    if(selectedCategoryIndex === null){
+      modelGrid.innerHTML = '<div class="model-hint">Pick a category above to see models.</div>';
+      return;
+    }
+    // Custom model card always first
+    const customCard = document.createElement('div');
+    customCard.className = 'modelcard custom' + (customModelDataUrl ? ' has-img' : '');
+    if(customModelDataUrl){ customCard.style.backgroundImage = `url(${customModelDataUrl})`; }
+    customCard.dataset.custom = '1';
+    customCard.innerHTML = customModelDataUrl
+      ? '<span>Custom model</span>'
+      : '<div class="custom-inner"><div class="custom-icon">+</div><div class="custom-label">Upload your<br>own model</div></div>';
+    modelGrid.appendChild(customCard);
+
+    const cat = studioConfig.categories[selectedCategoryIndex];
+    cat.models.forEach((m, mIdx)=>{
+      const card = document.createElement('div');
+      card.className = 'modelcard';
+      card.dataset.modelIdx = mIdx;
+      card.style.background = m.img ? `url(${m.img}) center/cover no-repeat` : placeholderGrads[mIdx % placeholderGrads.length];
+      card.innerHTML = `<span>${m.name}</span>`;
+      modelGrid.appendChild(card);
+    });
+  }
+
+  renderCategoryRow();
+  renderModelGrid();
+
+  categoryRow.addEventListener('click', e=>{
+    const pill = e.target.closest('.pill');
+    if(!pill) return;
+    document.querySelectorAll('#categoryRow .pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    selectedCategoryIndex = parseInt(pill.dataset.idx, 10);
+    selectedCategory = studioConfig.categories[selectedCategoryIndex].name;
+    selectedModel = null;
+    customModelDataUrl = null;
+    customModelFile = null;
+    renderModelGrid();
+  });
+
+  modelGrid.addEventListener('click', e=>{
+    const card = e.target.closest('.modelcard');
+    if(!card) return;
+    if(card.dataset.custom){
+      customModelInput.click();
+      return;
+    }
+    document.querySelectorAll('#modelGrid .modelcard').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    const cat = studioConfig.categories[selectedCategoryIndex];
+    selectedModel = cat.models[parseInt(card.dataset.modelIdx, 10)].name;
+    customModelFile = null;
+    customModelDataUrl = null;
+  });
+
+  customModelInput.addEventListener('change', e=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    customModelFile = file;
+    const reader = new FileReader();
+    reader.onload = ev=>{
+      customModelDataUrl = ev.target.result;
+      renderModelGrid();
+      const customCard = modelGrid.querySelector('.modelcard.custom');
+      if(customCard) customCard.classList.add('active');
+      selectedModel = 'Custom model';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  runBtn.addEventListener('click', async ()=>{
+    if(!studioConfig.webhookUrl){ setStatus('Webhook URL not set yet — open Studio admin.', 'err'); return; }
+
+    if(activeMode === 'image'){
+      if(!files.imgProduct){ setStatus('Upload a product image first.', 'err'); return; }
+      if(!selectedCategory){ setStatus('Pick a category.', 'err'); return; }
+      if(!selectedModel){ setStatus('Pick a model.', 'err'); return; }
+    } else if(activeMode === 'video'){
+      if(!files.vidProduct){ setStatus('Upload a product image first.', 'err'); return; }
+      if(!vidSelectedCategory){ setStatus('Pick a category.', 'err'); return; }
+      if(!vidSelectedModel){ setStatus('Pick a model.', 'err'); return; }
+    } else if(activeMode === 'product'){
+      if(!files.productOnly){ setStatus('Upload a product image first.', 'err'); return; }
+      const prompt = document.getElementById('productPrompt').value.trim();
+      if(!prompt){ setStatus('A prompt is required for Product Only mode.', 'err'); return; }
+    }
+
+    runBtn.disabled = true;
+    setStatus('Sending to studio… this can take a minute.', '');
+    resultBox.classList.remove('show');
+
+    try{
+      const formData = new FormData();
+      formData.append('mode', activeMode);
+
+      if(activeMode === 'image'){
+        formData.append('productImage', files.imgProduct);
+        if(files.imgModel) formData.append('modelImage', files.imgModel);
+        formData.append('category', selectedCategory);
+        formData.append('model', selectedModel);
+        formData.append('promptMode', imgPromptMode);
+        if(imgPromptMode === 'custom') formData.append('prompt', document.getElementById('imgCustomPrompt').value.trim());
+        formData.append('quality', imgQuality);
+
+      } else if(activeMode === 'video'){
+        formData.append('productImage', files.vidProduct);
+        formData.append('category', vidSelectedCategory);
+        formData.append('model', vidSelectedModel);
+        formData.append('promptMode', vidPromptMode);
+        if(vidPromptMode === 'custom') formData.append('prompt', document.getElementById('vidCustomPrompt').value.trim());
+        formData.append('duration', videoDuration);
+        formData.append('resolution', '1080p');
+
+      } else if(activeMode === 'product'){
+        formData.append('productImage', files.productOnly);
+        formData.append('prompt', document.getElementById('productPrompt').value.trim());
+        formData.append('quality', prodQuality);
+      }
+
+      const res = await fetch(studioConfig.webhookUrl, { method:'POST', body: formData });
+      if(!res.ok) throw new Error('Server returned ' + res.status);
+      const data = await res.json();
+      const outputUrl = data.outputUrl || data.url || data.image_url || data.videoUrl;
+      if(!outputUrl) throw new Error('No output URL in response');
+
+      resultImg.src = outputUrl;
+      resultBox.classList.add('show');
+      setStatus('Done! ✓', 'ok');
+    }catch(err){
+      setStatus('Failed: ' + err.message, 'err');
+    }finally{
+      runBtn.disabled = false;
+    }
+  });
+
+  function setStatus(msg, type){
+    statusText.textContent = msg;
+    statusText.className = 'status' + (type ? ' '+type : '');
+  }
+
+  // ---- Video mode: duplicate category/model grid ----
+  const vidCategoryRow = document.getElementById('vidCategoryRow');
+  const vidModelGrid = document.getElementById('vidModelGrid');
+  let vidSelectedCategoryIndex = null;
+
+  function renderVidCategoryRow(){
+    vidCategoryRow.innerHTML = '';
+    studioConfig.categories.forEach((cat,idx)=>{
+      const pill = document.createElement('div');
+      pill.className = 'pill';
+      pill.dataset.idx = idx;
+      pill.textContent = cat.name;
+      vidCategoryRow.appendChild(pill);
+    });
+  }
+  function renderVidModelGrid(){
+    vidModelGrid.innerHTML = '';
+    if(vidSelectedCategoryIndex === null){
+      vidModelGrid.innerHTML = '<div class="model-hint">Pick a category above to see models.</div>';
+      return;
+    }
+    const customCard = document.createElement('div');
+    customCard.className = 'modelcard custom';
+    customCard.dataset.custom = '1';
+    customCard.innerHTML = '<div class="custom-inner"><div class="custom-icon">+</div><div class="custom-label">Upload your<br>own model</div></div>';
+    vidModelGrid.appendChild(customCard);
+    const cat = studioConfig.categories[vidSelectedCategoryIndex];
+    cat.models.forEach((m,mIdx)=>{
+      const card = document.createElement('div');
+      card.className = 'modelcard';
+      card.dataset.modelIdx = mIdx;
+      card.style.background = m.img ? `url(${m.img}) center/cover no-repeat` : placeholderGrads[mIdx % placeholderGrads.length];
+      card.innerHTML = `<span>${m.name}</span>`;
+      vidModelGrid.appendChild(card);
+    });
+  }
+  renderVidCategoryRow();
+  renderVidModelGrid();
+
+  vidCategoryRow.addEventListener('click', e=>{
+    const pill = e.target.closest('.pill');
+    if(!pill) return;
+    document.querySelectorAll('#vidCategoryRow .pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    vidSelectedCategoryIndex = parseInt(pill.dataset.idx,10);
+    vidSelectedCategory = studioConfig.categories[vidSelectedCategoryIndex].name;
+    vidSelectedModel = null;
+    renderVidModelGrid();
+  });
+  vidModelGrid.addEventListener('click', e=>{
+    const card = e.target.closest('.modelcard');
+    if(!card) return;
+    document.querySelectorAll('#vidModelGrid .modelcard').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    if(card.dataset.custom){ vidSelectedModel = 'Custom model'; return; }
+    const cat = studioConfig.categories[vidSelectedCategoryIndex];
+    vidSelectedModel = cat.models[parseInt(card.dataset.modelIdx,10)].name;
+  });
+
+</script>
+</body>
+</html>
