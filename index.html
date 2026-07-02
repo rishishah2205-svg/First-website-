@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gen Autonomous — AI Fashion Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style id="tw">
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}input:where(:not([type])),input:where([type=date]),input:where([type=datetime-local]),input:where([type=email]),input:where([type=month]),input:where([type=number]),input:where([type=password]),input:where([type=search]),input:where([type=tel]),input:where([type=text]),input:where([type=time]),input:where([type=url]),input:where([type=week]),select,select:where([multiple]),textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0;padding:.5rem .75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000}input:where(:not([type])):focus,input:where([type=date]):focus,input:where([type=datetime-local]):focus,input:where([type=email]):focus,input:where([type=month]):focus,input:where([type=number]):focus,input:where([type=password]):focus,input:where([type=search]):focus,input:where([type=tel]):focus,input:where([type=text]):focus,input:where([type=time]):focus,input:where([type=url]):focus,input:where([type=week]):focus,select:focus,select:where([multiple]):focus,textarea:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow);border-color:#2563eb}input::-moz-placeholder,textarea::-moz-placeholder{color:#6b7280;opacity:1}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-meridiem-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-year-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");background-position:right .5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}select:where([multiple]),select:where([size]:not([size="1"])){background-image:none;background-position:0 0;background-repeat:unset;background-size:initial;padding-right:.75rem;-webkit-print-color-adjust:unset;print-color-adjust:unset}input:where([type=checkbox]),input:where([type=radio]){-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}input:where([type=checkbox]){border-radius:0}input:where([type=radio]){border-radius:100%}input:where([type=checkbox]):focus,input:where([type=radio]):focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}input:where([type=checkbox]):checked,input:where([type=radio]):checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}input:where([type=checkbox]):checked{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0'/%3E%3C/svg%3E")}@media (forced-colors:active) {input:where([type=checkbox]):checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=radio]):checked{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E")}@media (forced-colors:active) {input:where([type=radio]):checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=checkbox]):checked:focus,input:where([type=checkbox]):checked:hover,input:where([type=radio]):checked:focus,input:where([type=radio]):checked:hover{border-color:transparent;background-color:currentColor}input:where([type=checkbox]):indeterminate{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3E%3C/svg%3E");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}@media (forced-colors:active) {input:where([type=checkbox]):indeterminate{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=checkbox]):indeterminate:focus,input:where([type=checkbox]):indeterminate:hover{border-color:transparent;background-color:currentColor}input:where([type=file]){background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}input:where([type=file]):focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.-top-4{top:-1rem}.left-1\/2{left:50%}.right-0{right:0}.right-6{right:1.5rem}.top-0{top:0}.top-6{top:1.5rem}.top-full{top:100%}.z-10{z-index:10}.z-50{z-index:50}.z-\[100\]{z-index:100}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:.25rem}.ml-2{margin-left:.5rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-auto{margin-top:auto}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-\[3\/4\]{aspect-ratio:3/4}.aspect-square{aspect-ratio:1/1}.h-1\.5{height:.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-16{height:4rem}.h-2{height:.5rem}.h-24{height:6rem}.h-3{height:.75rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-8{height:2rem}.h-80{height:20rem}.h-9{height:2.25rem}.h-full{height:100%}.h-px{height:1px}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-12{width:3rem}.w-16{width:4rem}.w-2{width:.5rem}.w-2\/3{width:66.666667%}.w-24{width:6rem}.w-5{width:1.25rem}.w-72{width:18rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.w-px{width:1px}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}@keyframes spin{to{transform:rotate(1turn)}}.animate-spin{animation:spin 1s linear infinite}.cursor-pointer{cursor:pointer}.snap-x{scroll-snap-type:x var(--tw-scroll-snap-strictness)}.snap-mandatory{--tw-scroll-snap-strictness:mandatory}.snap-center{scroll-snap-align:center}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.flex-col{flex-direction:column}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-10{gap:2.5rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-10>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2.5rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.space-y-8>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[1\.25rem\]{border-radius:1.25rem}.rounded-\[2\.5rem\]{border-radius:2.5rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-4{border-width:4px}.border-b-0{border-bottom-width:0}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.border-dashed{border-style:dashed}.border-electric-indigo{--tw-border-opacity:1;border-color:rgb(91 110 232/var(--tw-border-opacity,1))}.border-primary{--tw-border-opacity:1;border-color:rgb(187 195 255/var(--tw-border-opacity,1))}.border-primary\/20{border-color:rgba(187,195,255,.2)}.border-primary\/30{border-color:rgba(187,195,255,.3)}.border-soft-rose{--tw-border-opacity:1;border-color:rgb(196 91 140/var(--tw-border-opacity,1))}.border-warm-amber{--tw-border-opacity:1;border-color:rgb(224 164 88/var(--tw-border-opacity,1))}.border-white\/10{border-color:hsla(0,0%,100%,.1)}.border-white\/20{border-color:hsla(0,0%,100%,.2)}.border-white\/5{border-color:hsla(0,0%,100%,.05)}.border-t-transparent{border-top-color:transparent}.border-t-white\/10{border-top-color:hsla(0,0%,100%,.1)}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity,1))}.bg-black\/60{background-color:rgba(0,0,0,.6)}.bg-electric-indigo{--tw-bg-opacity:1;background-color:rgb(91 110 232/var(--tw-bg-opacity,1))}.bg-electric-indigo\/10{background-color:rgba(91,110,232,.1)}.bg-primary{--tw-bg-opacity:1;background-color:rgb(187 195 255/var(--tw-bg-opacity,1))}.bg-primary\/10{background-color:rgba(187,195,255,.1)}.bg-primary\/5{background-color:rgba(187,195,255,.05)}.bg-soft-rose{--tw-bg-opacity:1;background-color:rgb(196 91 140/var(--tw-bg-opacity,1))}.bg-soft-rose\/10{background-color:rgba(196,91,140,.1)}.bg-warm-amber{--tw-bg-opacity:1;background-color:rgb(224 164 88/var(--tw-bg-opacity,1))}.bg-warm-amber\/10{background-color:rgba(224,164,88,.1)}.bg-white\/10{background-color:hsla(0,0%,100%,.1)}.bg-white\/5{background-color:hsla(0,0%,100%,.05)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-electric-indigo{--tw-gradient-from:#5b6ee8 var(--tw-gradient-from-position);--tw-gradient-to:rgba(91,110,232,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-soft-rose{--tw-gradient-to:#c45b8c var(--tw-gradient-to-position)}.object-cover{-o-object-fit:cover;object-fit:cover}.p-1{padding:.25rem}.p-1\.5{padding:.375rem}.p-10{padding:2.5rem}.p-12{padding:3rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-10{padding-bottom:2.5rem}.pb-40{padding-bottom:10rem}.pt-4{padding-top:1rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[18px\]{font-size:18px}.text-\[20px\]{font-size:20px}.text-\[22px\]{font-size:22px}.text-\[8px\]{font-size:8px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-light{font-weight:300}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.tracking-tighter{letter-spacing:-.05em}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0/var(--tw-text-opacity,1))}.text-electric-indigo{--tw-text-opacity:1;color:rgb(91 110 232/var(--tw-text-opacity,1))}.text-on-primary{--tw-text-opacity:1;color:rgb(0 28 149/var(--tw-text-opacity,1))}.text-on-surface-variant{--tw-text-opacity:1;color:rgb(197 197 214/var(--tw-text-opacity,1))}.text-on-surface-variant\/50{color:rgba(197,197,214,.5)}.text-on-surface-variant\/60{color:rgba(197,197,214,.6)}.text-on-surface-variant\/70{color:rgba(197,197,214,.7)}.text-on-surface-variant\/80{color:rgba(197,197,214,.8)}.text-primary{--tw-text-opacity:1;color:rgb(187 195 255/var(--tw-text-opacity,1))}.text-primary\/80{color:rgba(187,195,255,.8)}.text-soft-rose{--tw-text-opacity:1;color:rgb(196 91 140/var(--tw-text-opacity,1))}.text-text-muted{--tw-text-opacity:1;color:rgb(141 138 146/var(--tw-text-opacity,1))}.text-text-muted\/60{color:hsla(263,4%,56%,.6)}.text-text-muted\/70{color:hsla(263,4%,56%,.7)}.text-warm-amber{--tw-text-opacity:1;color:rgb(224 164 88/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-white\/40{color:hsla(0,0%,100%,.4)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-50{opacity:.5}.opacity-60{opacity:.6}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-lg{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-electric-indigo\/20{--tw-shadow-color:rgba(91,110,232,.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-indigo-500\/20{--tw-shadow-color:rgba(99,102,241,.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-soft-rose\/20{--tw-shadow-color:rgba(196,91,140,.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-warm-amber\/20{--tw-shadow-color:rgba(224,164,88,.2);--tw-shadow:var(--tw-shadow-colored)}.outline{outline-style:solid}.blur{--tw-blur:blur(8px)}.blur,.brightness-150{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.brightness-150{--tw-brightness:brightness(1.5)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-500{transition-duration:.5s}.hover\:border-primary:hover{--tw-border-opacity:1;border-color:rgb(187 195 255/var(--tw-border-opacity,1))}.hover\:border-primary\/50:hover{border-color:rgba(187,195,255,.5)}.hover\:bg-electric-indigo\/80:hover{background-color:rgba(91,110,232,.8)}.hover\:bg-primary:hover{--tw-bg-opacity:1;background-color:rgb(187 195 255/var(--tw-bg-opacity,1))}.hover\:bg-soft-rose\/80:hover{background-color:rgba(196,91,140,.8)}.hover\:bg-warm-amber\/80:hover{background-color:rgba(224,164,88,.8)}.hover\:bg-white\/10:hover{background-color:hsla(0,0%,100%,.1)}.hover\:bg-white\/20:hover{background-color:hsla(0,0%,100%,.2)}.hover\:bg-white\/5:hover{background-color:hsla(0,0%,100%,.05)}.hover\:text-on-primary:hover{--tw-text-opacity:1;color:rgb(0 28 149/var(--tw-text-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.focus\:border-primary:focus{--tw-border-opacity:1;border-color:rgb(187 195 255/var(--tw-border-opacity,1))}.focus\:ring-0:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05}.group:hover .group-hover\:scale-105,.group:hover .group-hover\:scale-110{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1}.group:hover .group-hover\:text-primary{--tw-text-opacity:1;color:rgb(187 195 255/var(--tw-text-opacity,1))}.group:hover .group-hover\:text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width:768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.md\:grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width:1024px){.lg\:block{display:block}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.lg\:grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}}
+</style>
+<style>
+        :root {
+          --bg: #060608;
+          --text: #f3f1ee;
+          --muted: #8d8a92;
+          --grad-a: #5b6ee8;
+          --grad-b: #c45b8c;
+          --grad-c: #e0a458;
+          --grad-d: #131316;
+        }
+
+        body {
+          background-color: var(--bg);
+          color: var(--text);
+          font-family: 'Inter', sans-serif;
+          -webkit-font-smoothing: antialiased;
+          overflow-x: hidden;
+          margin: 0;
+        }
+
+        .immersive-bg {
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          background-color: var(--bg);
+          background-image: 
+            radial-gradient(circle at 10% 10%, rgba(91, 110, 232, 0.15) 0%, transparent 60%),
+            radial-gradient(circle at 90% 15%, rgba(196, 91, 140, 0.15) 0%, transparent 55%),
+            radial-gradient(circle at 50% 100%, rgba(224, 164, 88, 0.08) 0%, transparent 70%);
+        }
+
+        .glow-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 0;
+          overflow: hidden;
+        }
+
+        .glow-point {
+          position: absolute;
+          border-radius: 100%;
+          filter: blur(140px);
+          opacity: 0.25;
+          animation: drift 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift {
+          from { transform: translate(0, 0) scale(1); }
+          to { transform: translate(5%, 5%) scale(1.1); }
+        }
+
+        .font-profico {
+          font-family: 'Manrope', sans-serif;
+          font-weight: 800;
+          letter-spacing: -0.045em;
+          line-height: 0.85;
+        }
+
+        .glass-panel {
+          background: rgba(15, 15, 20, 0.75);
+          backdrop-filter: blur(50px);
+          -webkit-backdrop-filter: blur(50px);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .glass-card {
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(30px);
+          -webkit-backdrop-filter: blur(30px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+          transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+
+        .premium-gradient-text {
+          background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .btn-premium-action {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease;
+          color: var(--muted);
+        }
+        
+        .btn-premium-action:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.25);
+          color: white;
+          transform: scale(1.02);
+        }
+
+        .btn-premium-action:active {
+          transform: scale(0.98);
+        }
+
+        .btn-premium-action.active {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.3);
+          color: white;
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-primary-main {
+          position: relative;
+          background: linear-gradient(135deg, #5b6ee8, #c45b8c);
+          color: white;
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+
+        .btn-primary-main:hover {
+          transform: translateY(-2px) scale(1.01);
+          box-shadow: 0 15px 40px rgba(196, 91, 140, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary-main:active {
+          transform: translateY(0) scale(0.98);
+        }
+
+        .pricing-card-square {
+          min-width: 300px;
+          aspect-ratio: 1 / 1.2;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        input[type=range] {
+          -webkit-appearance: none;
+          background: transparent;
+          width: 100%;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+          width: 100%;
+          height: 2px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 1px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          height: 12px;
+          width: 12px;
+          border-radius: 50%;
+          background: #fff;
+          cursor: pointer;
+          margin-top: -5px;
+          box-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+        
+        .view-content { display: none; }
+        .view-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mode-content { display: none; }
+        .mode-content.active { display: block; }
+
+        .modal-overlay {
+          background: rgba(0, 0, 0, 0.85);
+          backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+          position: relative;
+        }
+        .nav-btn.active::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: #5b6ee8;
+          border-radius: 2px;
+        }
+
+        .plan-popover {
+          display: none;
+          animation: popoverFadeIn 0.2s ease-out;
+        }
+        .plan-container:hover .plan-popover {
+          display: block;
+        }
+        @keyframes popoverFadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-element {
+            transition: all 0.2s ease-in-out;
+        }
+        .interactive-element:hover { transform: scale(1.02); }
+        .interactive-element:active { transform: scale(0.98); }
+
+        .pill-active {
+            background: white !important;
+            color: black !important;
+            border-color: transparent !important;
+        }
+
+        .pricing-content { display: none; }
+        .pricing-content.active { display: block; }
+
+        .loading-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 13, 0.9);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+<!-- Dynamic Background Layers -->
+<div class="immersive-bg"></div>
+<div class="glow-overlay">
+<div class="glow-point bg-electric-indigo" style="top: -10%; right: -5%; width: 800px; height: 800px; animation-delay: 0s; opacity: 0.3;"></div>
+<div class="glow-point bg-soft-rose" style="top: 30%; left: -10%; width: 700px; height: 700px; animation-delay: -5s; opacity: 0.25;"></div>
+<div class="glow-point bg-warm-amber" style="bottom: -10%; right: 10%; width: 600px; height: 600px; animation-delay: -10s; opacity: 0.1;"></div>
+</div>
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 w-full glass-panel border-b-0 px-8 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-10">
+<a class="text-2xl font-profico tracking-tighter flex items-center gap-3 interactive-element" href="#" onclick="switchView('studio')">
+<span class="bg-gradient-to-br from-electric-indigo to-soft-rose w-9 h-9 rounded-xl flex items-center justify-center text-sm shadow-lg shadow-indigo-500/20">G</span>
+<span class="premium-gradient-text">GEN AUTONOMOUS</span>
+</a>
+<div class="hidden md:flex items-center gap-6 text-[11px] font-bold tracking-wider text-on-surface-variant/70 uppercase">
+<button class="nav-btn nav-link-studio hover:text-white transition-all py-1 active" onclick="switchView('studio')">Studio</button>
+<button class="nav-btn nav-link-gallery hover:text-white transition-all py-1" onclick="switchView('gallery')">Gallery</button>
+<button class="nav-btn nav-link-pricing hover:text-white transition-all py-1" onclick="switchView('pricing')">Pricing</button>
+<button class="nav-btn nav-link-guide hover:text-white transition-all py-1" onclick="switchView('guide')">Guide</button>
+<button class="nav-btn nav-link-support hover:text-white transition-all py-1" onclick="openSupportModal()">Support</button>
+</div>
+</div>
+<div class="hidden lg:block relative plan-container">
+<div class="flex items-center gap-6 px-6 py-2 rounded-2xl bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest font-bold text-on-surface-variant/60 cursor-pointer hover:bg-white/10 transition-all" id="nav-plan-bar">
+<div class="flex flex-col">
+<span class="text-[9px] opacity-50">Active Plan</span>
+<span class="text-white" id="nav-plan-name">—</span>
+</div>
+<div class="w-px h-6 bg-white/10"></div>
+<div class="flex flex-col">
+<span class="text-[9px] opacity-50">Credits</span>
+<span class="text-primary" id="nav-credits">—</span>
+</div>
+<div class="w-px h-6 bg-white/10"></div>
+<div class="flex flex-col">
+<span class="text-[9px] opacity-50">Expires</span>
+<span class="text-white" id="nav-expiry">—</span>
+</div>
+</div>
+<!-- Credit Breakdown Popover -->
+<div class="absolute top-full right-0 mt-4 w-72 glass-panel p-6 rounded-3xl z-50 plan-popover">
+<h4 class="text-xs font-bold uppercase tracking-widest text-white mb-4">Plan Breakdown</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-[10px] text-on-surface-variant/70 font-bold uppercase">Plan Type</span>
+<span class="text-xs text-electric-indigo font-bold" id="popover-plan-type">—</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold uppercase">
+<span class="text-on-surface-variant/70">Usage</span>
+<span class="text-white" id="popover-usage-pct">—</span>
+</div>
+<div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-electric-indigo to-soft-rose" id="popover-usage-bar" style="width: 0%"></div>
+</div>
+<p class="text-[9px] text-on-surface-variant/50 text-right" id="popover-usage-label">— of — credits used</p>
+</div>
+<div class="pt-4 border-t border-white/10 space-y-2">
+<div class="flex justify-between text-[10px] font-bold uppercase">
+<span class="text-on-surface-variant/70">Purchased</span>
+<span class="text-white" id="popover-purchased">—</span>
+</div>
+<div class="flex justify-between text-[10px] font-bold uppercase">
+<span class="text-on-surface-variant/70">Expiry</span>
+<span class="text-white" id="popover-expiry">—</span>
+</div>
+</div>
+<button class="w-full mt-2 py-3 rounded-xl bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/20 hover:bg-primary hover:text-on-primary transition-all interactive-element" onclick="switchView('pricing')">Buy Credits</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all interactive-element px-4 py-2 gap-2" id="nav-user-btn" onclick="handleNavUserClick()">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant" id="nav-user-icon">account_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant hidden" id="nav-user-name"></span>
+</button>
+</div>
+</div>
+</nav>
+<main class="relative z-10 max-w-7xl mx-auto px-8 py-16 pb-40">
+<!-- STUDIO VIEW -->
+<div class="view-content active" id="view-studio">
+<header class="mb-16">
+<h1 class="text-5xl md:text-7xl font-profico premium-gradient-text mb-6">
+                    Creative<br/>Studio.
+                </h1>
+<p class="text-lg text-on-surface-variant/80 max-w-2xl font-light leading-relaxed">
+                    Upload your garment and use our autonomous agents to generate professional fashion photography and cinematic videos.
+                </p>
+</header>
+<div class="space-y-10">
+<!-- Mode Switcher -->
+<div class="glass-card rounded-3xl p-1.5 flex gap-1.5 max-w-2xl">
+<button class="mode-btn flex-1 py-4 px-4 rounded-[1.25rem] flex items-center justify-center gap-3 text-sm font-bold tracking-wide transition-all btn-premium-action active" id="mode-btn-image" onclick="switchMode('image')">
+<span class="material-symbols-outlined text-[22px]">image</span>
+                        Images
+                    </button>
+<button class="mode-btn flex-1 py-4 px-4 rounded-[1.25rem] flex items-center justify-center gap-3 text-sm font-bold tracking-wide transition-all btn-premium-action" id="mode-btn-video" onclick="switchMode('video')">
+<span class="material-symbols-outlined text-[22px]">movie</span>
+                        Video
+                    </button>
+<button class="mode-btn flex-1 py-4 px-4 rounded-[1.25rem] flex items-center justify-center gap-3 text-sm font-bold tracking-wide transition-all btn-premium-action" id="mode-btn-product" onclick="switchMode('product')">
+<span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+                        Product Only
+                    </button>
+</div>
+<!-- IMAGE MODE CONTENT -->
+<div class="mode-content active space-y-10" id="mode-image">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Upload Product -->
+<div class="glass-card rounded-3xl p-8 border-dashed border-2 border-white/10 flex flex-col items-center justify-center text-center cursor-pointer group relative overflow-hidden interactive-element" onclick="document.getElementById('file-product').click()">
+<input class="hidden" id="file-product" onchange="handleFileUpload(this, 'prod-thumb')" type="file"/>
+<div class="w-24 h-24 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-105 transition-all duration-500 overflow-hidden" id="prod-thumb-container">
+<span class="material-symbols-outlined text-4xl text-primary/80" id="prod-icon">apparel</span>
+<img class="hidden w-full h-full object-cover" id="prod-thumb"/>
+</div>
+<h3 class="font-bold text-xl mb-2 premium-gradient-text">Product Photo</h3>
+<p class="text-sm text-text-muted/70">Upload flat lay or mannequin shot</p>
+</div>
+<!-- Custom Model -->
+<div class="glass-card rounded-3xl p-8 border-dashed border-2 border-white/10 flex flex-col items-center justify-center text-center cursor-pointer group relative overflow-hidden interactive-element" onclick="document.getElementById('file-model').click()">
+<input class="hidden" id="file-model" type="file"/>
+<div class="w-24 h-24 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-105 transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-electric-indigo">face</span>
+</div>
+<h3 class="font-bold text-xl mb-2 premium-gradient-text">Custom Model</h3>
+<p class="text-sm text-text-muted/70">Upload your own model face (Optional)</p>
+</div>
+</div>
+<!-- Category Pills -->
+<!-- Model Selection -->
+<div class="glass-card rounded-3xl p-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div class="space-y-1">
+<h3 class="font-bold text-xl premium-gradient-text">Select Model Style</h3>
+<div class="flex gap-4 mt-4"><button class="style-pill px-4 py-1.5 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all interactive-element pill-active" onclick="selectPill(this, 'style-pill')">Editorial</button><button class="style-pill px-4 py-1.5 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all interactive-element" onclick="selectPill(this, 'style-pill')">High Studio</button><button class="style-pill px-4 py-1.5 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all interactive-element" onclick="selectPill(this, 'style-pill')">Lifestyle</button><button class="style-pill px-4 py-1.5 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all interactive-element" onclick="selectPill(this, 'style-pill')">Cinematic</button></div>
+</div>
+<div class="flex items-center gap-4 bg-white/5 p-1 rounded-xl"><button class="px-6 py-2 rounded-lg bg-white/10 text-[10px] font-bold uppercase interactive-element" onclick="toggleModelGallery(false, event)">Pre-built Sets</button><button class="px-6 py-2 rounded-lg text-[10px] font-bold uppercase text-on-surface-variant/50 interactive-element" onclick="toggleModelGallery(true, event)">My Gallery</button></div>
+</div>
+<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4" id="model-grid">
+<div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element active-border" onclick="selectModel(this)">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTU2eZ-ZPhPG9Wtfgz4pD7sDQ9poME_ewn4lyUm4Tlm2MMoQ6IUBZm65VJ8h6Oum3xIVDhIE7vIJSNkXF3I9T8sAXNoYEj9_ms2nkTsy0aRx2bBUtYJReXXXDQQZsro1aQHPFCejjtDUYFFkMCKEJS6j76DOtNURjaBGTWKpcbQ47Cx4SfksQCncv51kXW-DoW_3ogGDTH3V68QdiJiYGRhItl95CR13Bcg6DTL1fV0Qk8sEW6-FT1G4M__b2xwfaPat1Ixfz1KGlf"/>
+</div>
+<div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChcmFK0CN0HO2aLIk2OgizDWFg1y7Lta10cBgJeP2PjuZbky_8pLeSGS6q-95PesivqqzEgRpiqo7S1eL9DRYQUO043I0ExnWu8SLOy-8MiELtpx6YDtNpOxZU7kh0rLUJmF7tetw2XWIliKgAIZTMABensjuqB0YL2259VtqHnKh-4Y96AFwb9Naq2IZv8r4pCiIb3bygdEW9nBs6s_W0aifh2vAQdL-q_yjLlVrfTOph8V8WHkzkCSxiRJ2IoNOASfKmTBpN6qAj"/>
+</div>
+<div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YblRaGeSuOeKqEsQl6piYvTk2hzZK6vb6L2nEWVG-n3xxc8n4p2igvUwCw32F4LAYAzTEEE63e9dDI8OiomWc5Vk3Dj5auYccO7zvz6WJHykFpC6tKO_pGRfuwdjKpM6FJzHBYXlBRqpIGnYSqNKbeJQwubC_Tw1pwIrm_2WnUoNK5gSt0PVq3fFeImkoXNSVqC8oC7j6nJs0x0XO4vwz84QDJvGOVnnvaeQWjyAtI9TcrSr6YwLul_ZuHXSkvlWQZt9Uxe9B2z3"/>
+</div>
+<div class="aspect-[3/4] rounded-xl bg-white/5 border border-dashed border-white/20 hover:border-primary/50 transition-all cursor-pointer flex flex-col items-center justify-center gap-2 interactive-element group relative" onclick="document.getElementById('custom-model-input').click()"><input class="hidden" id="custom-model-input" type="file"/><span class="material-symbols-outlined text-white/40 group-hover:text-primary transition-colors">add_a_photo</span><span class="text-[8px] font-bold uppercase tracking-tighter text-white/40 group-hover:text-white">Custom Upload</span></div>
+</div>
+</div>
+<!-- Prompt Section -->
+<div class="glass-card rounded-3xl p-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-bold text-xl premium-gradient-text">Prompt Control</h3>
+<div class="flex bg-white/5 rounded-full p-1 border border-white/10">
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary text-[10px] font-bold uppercase transition-all interactive-element" id="prompt-auto-btn" onclick="togglePrompt(false)">Automatic</button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant/50 text-[10px] font-bold uppercase transition-all interactive-element" id="prompt-custom-btn" onclick="togglePrompt(true)">Custom</button>
+</div>
+</div>
+<div class="hidden" id="custom-prompt-container">
+<textarea class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 text-sm text-white focus:border-primary focus:ring-0 transition-all" placeholder="Describe the lighting, environment, and model pose in detail..." rows="3"></textarea>
+</div>
+<div class="text-sm text-text-muted/60 italic p-4 bg-white/5 rounded-2xl border border-dashed border-white/10" id="auto-prompt-container">
+                            AI will automatically analyze your product and model selection to create the perfect scene.
+                        </div>
+</div>
+<div class="relative">
+<div class="hidden loading-overlay" id="gen-loader-img">
+<div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+<p class="text-xs font-bold uppercase tracking-widest text-primary animate-pulse">Synthesizing Imagery...</p>
+</div>
+<button class="w-full btn-primary-main py-6 rounded-3xl font-bold text-lg uppercase tracking-widest shadow-2xl shadow-indigo-500/20" onclick="simulateGeneration('gen-loader-img')">
+                            Generate Photography
+                        </button>
+</div>
+</div>
+<!-- VIDEO MODE CONTENT -->
+<div class="mode-content space-y-10" id="mode-video">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="space-y-8">
+<!-- Source Image -->
+<div class="glass-card rounded-3xl p-8 border-dashed border-2 border-white/10 flex flex-col items-center justify-center text-center cursor-pointer relative h-64 group interactive-element" onclick="document.getElementById('file-video-source').click()">
+<input class="hidden" id="file-video-source" type="file"/>
+<span class="material-symbols-outlined text-4xl text-soft-rose mb-4">movie_edit</span>
+<h3 class="font-bold text-lg premium-gradient-text">Source Image</h3>
+<p class="text-xs text-text-muted/70">The image you want to animate</p>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-8 space-y-8">
+<h3 class="font-bold text-xl premium-gradient-text">Video Settings</h3>
+<div class="space-y-4">
+<div class="flex justify-between text-[11px] font-bold uppercase tracking-widest">
+<span class="text-text-muted">Duration</span>
+<span class="text-primary" id="duration-val">5s</span>
+</div>
+<input max="15" min="5" oninput="document.getElementById('duration-val').innerText = this.value + 's'" step="1" type="range" value="5"/>
+</div>
+<div class="space-y-4">
+<span class="text-[11px] font-bold uppercase tracking-widest text-text-muted">Resolution</span>
+<div class="grid grid-cols-2 gap-3">
+<button class="quality-btn py-3 rounded-xl border border-white/10 text-xs font-bold hover:border-primary transition-all bg-white/5 interactive-element" onclick="selectPill(this, 'quality-btn')">720p</button>
+<button class="quality-btn py-3 rounded-xl border border-primary text-xs font-bold bg-primary/10 text-primary transition-all interactive-element pill-active" onclick="selectPill(this, 'quality-btn')">1080p</button>
+<button class="quality-btn py-3 rounded-xl border border-white/10 text-xs font-bold hover:border-primary transition-all bg-white/5 interactive-element" onclick="selectPill(this, 'quality-btn')">2K</button>
+<button class="quality-btn py-3 rounded-xl border border-white/10 text-xs font-bold hover:border-primary transition-all bg-white/5 interactive-element" onclick="selectPill(this, 'quality-btn')">4K</button>
+</div>
+</div>
+<!-- Animation Prompt Integrated here -->
+<div class="pt-4 border-t border-white/10 space-y-4">
+<h3 class="font-bold text-lg premium-gradient-text">Animation Prompt</h3>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 text-sm text-white focus:border-primary focus:ring-0" placeholder="Describe the motion: hair blowing in wind, walking towards camera, graceful turn..." rows="4"></textarea>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="hidden loading-overlay" id="gen-loader-vid">
+<div class="w-12 h-12 border-4 border-soft-rose border-t-transparent rounded-full animate-spin mb-4"></div>
+<p class="text-xs font-bold uppercase tracking-widest text-soft-rose animate-pulse">Rendering Motion Vectors...</p>
+</div>
+<button class="w-full btn-primary-main py-6 rounded-3xl font-bold text-lg uppercase tracking-widest shadow-2xl shadow-indigo-500/20" onclick="simulateGeneration('gen-loader-vid')">
+                            Generate Cinematic Video
+                        </button>
+</div>
+</div>
+<!-- PRODUCT ONLY MODE CONTENT -->
+<div class="mode-content space-y-10" id="mode-product">
+<div class="max-w-3xl mx-auto space-y-8">
+<div class="glass-card rounded-3xl p-12 border-dashed border-2 border-white/10 flex flex-col items-center justify-center text-center cursor-pointer relative h-80 group interactive-element" onclick="document.getElementById('file-product-only').click()">
+<input class="hidden" id="file-product-only" type="file"/>
+<div class="w-24 h-24 rounded-3xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-all duration-500">
+<span class="material-symbols-outlined text-5xl text-warm-amber">shopping_bag</span>
+</div>
+<h3 class="font-bold text-2xl mb-2 premium-gradient-text">Upload Product Image</h3>
+<p class="text-sm text-text-muted/70">Ghost mannequin or flat lay recommended</p>
+</div>
+<div class="glass-card rounded-3xl p-8 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-xl premium-gradient-text">Prompt <span class="text-soft-rose text-xs ml-2 font-normal">(Required)</span></h3>
+</div>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-sm text-white focus:border-primary focus:ring-0" placeholder="Enhance details, adjust fabric texture, or clean up lighting..." rows="3"></textarea>
+</div>
+<div class="relative">
+<div class="hidden loading-overlay" id="gen-loader-prod">
+<div class="w-12 h-12 border-4 border-warm-amber border-t-transparent rounded-full animate-spin mb-4"></div>
+<p class="text-xs font-bold uppercase tracking-widest text-warm-amber animate-pulse">Enhancing Textures...</p>
+</div>
+<button class="w-full btn-primary-main py-6 rounded-3xl font-bold text-lg uppercase tracking-widest shadow-2xl shadow-indigo-500/20" onclick="simulateGeneration('gen-loader-prod')">
+                                Enhance Product
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- GALLERY VIEW -->
+<div class="view-content" id="view-gallery">
+<header class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="text-5xl font-profico premium-gradient-text mb-4">My Gallery</h2>
+<p class="text-on-surface-variant/60 text-sm tracking-widest uppercase font-bold">Your generated images &amp; videos</p>
+</div>
+<div class="flex gap-3">
+<button class="gallery-filter-btn px-5 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all pill-active interactive-element" onclick="filterGallery('all', this)">All</button>
+<button class="gallery-filter-btn px-5 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all text-on-surface-variant/50 interactive-element" onclick="filterGallery('image', this)">Images</button>
+<button class="gallery-filter-btn px-5 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all text-on-surface-variant/50 interactive-element" onclick="filterGallery('video', this)">Videos</button>
+</div>
+</header>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="user-gallery-grid">
+<div class="glass-card aspect-square rounded-2xl overflow-hidden relative group interactive-element">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWmnpo_BXgPjZpH2IepJCgPReglDlZx2_Mpy6FNqyT5hHnIh8fw84qiEQkhuiaBlonZ_gFLmorZzHqfIahzgvdvLsnkk7HjxQc-DwlyNU2gd2_-aiCg9tJjCYZ1kSeVzL95MxJsqwPn8jVi4jFC2LBQ8vA-3N9NiY7wnasiD8ao5599XHxkqu-bSkDF71Vc7Q1LTo4eNtWSm_BWs00cAAByRwFSqEqxnS-xoCa9-y2dazCxKxB-JLG4zbzyNXNV_7L6MrctwoOKU1x"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">download</span></button>
+<button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">share</span></button>
+</div>
+</div>
+<div class="glass-card aspect-square rounded-2xl overflow-hidden relative group interactive-element">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEjmmyaKhTjtI1TzDOA8VBrn3o6J48WNSrALqP38NlKwBY6tk7-ciDLG1Nr7mhMX_8bZh--bnRGEoPapV8hc-sd_1BWgqB2fBLAwVxg71Ws46mM4PWxLp2AK7cgzEAbWh-b4-UA0dlD23qvVKak70kfeB9KxVsyTlzAsvpSYxNSHcIOCOGp-loZg6vz9uL1twO-4WF-7y0r8iXxm84lngLe3h0XR6BXTUyE5zUKTJypnevgp_TTRdOiQ8wdSwGM_rL2W7Mih8E3QYV"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">download</span></button>
+<button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">share</span></button>
+</div>
+</div>
+<div class="glass-card aspect-square rounded-2xl overflow-hidden border-2 border-primary/30 flex items-center justify-center bg-primary/5">
+<div class="text-center p-4">
+<div class="w-2 h-2 rounded-full bg-primary mx-auto mb-3 animate-pulse"></div>
+<span class="text-[9px] font-bold uppercase tracking-widest text-primary">Generating...</span>
+</div>
+</div>
+<div class="glass-card aspect-square rounded-2xl overflow-hidden relative group interactive-element">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwry1X2CQQ-dpda9x9E3y8-CO6AQ5NNelrwtjzWhkng2cHdxC3HAcOmgrynfCoAWWSguxZbYhIbZPCtaJX8gmjLeIGfuc7b10TZqzPJe7YwnXPZdeBwYSP-xqzZfe02Xgt2RpcMzg1FySjeOfnx1Ghdc5I1HB9Z8xJx-xmBbV41tw2v4Xo-HTiDQM6ud7_n_puJHGZEelz_uVM2LkFo7SpSG6afyWt2XPq2k26LXqfxUxc9fHGxZaglqVlWNzEDv3iGWJ5yELvZwSS"/>
+</div>
+<div class="glass-card aspect-square rounded-2xl overflow-hidden relative group interactive-element">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0dyEPKTOnO3jU1EbHdew40XN_YkMOhhUTtrkjopTtewvTXHbS4cPN9faBqzpu7YEUpoZsyZHM_FIaXgQaYzOule8LMB1NH9cIdtBeR5WqOU4-si_xDnwsdP_7-dtFv3_GP3RUN49P72_80UGOWUVqJ3el082gGiyR61X7ZUbCCpwPKBPCHdk_gRRtw2iwPByHTHPFC_ryy2NoWE2Zr0UMODAFzvjuuMtuvh1cWghsjO6qWjInK_BPYc7vDugHbDwfs6mgI1G5FXM0"/>
+</div>
+</div>
+</div>
+<!-- PRICING VIEW -->
+<div class="view-content" id="view-pricing">
+<header class="mb-16">
+<h2 class="text-5xl font-profico premium-gradient-text mb-4">Studio Credits</h2>
+<p class="text-on-surface-variant/60 text-sm tracking-widest uppercase font-bold">Choose your production scale</p>
+</header>
+<div class="flex justify-center mb-16">
+<div class="glass-panel p-1.5 rounded-2xl flex gap-2">
+<button class="pricing-tab-btn py-3 px-8 rounded-xl text-[11px] font-bold uppercase tracking-widest transition-all bg-white/10 text-white active" data-tab="images" onclick="switchPricingTab('images')">Images</button>
+<button class="pricing-tab-btn py-3 px-8 rounded-xl text-[11px] font-bold uppercase tracking-widest transition-all bg-white/5 text-white/40 hover:text-white" data-tab="videos" onclick="switchPricingTab('videos')">Videos</button>
+<button class="pricing-tab-btn py-3 px-8 rounded-xl text-[11px] font-bold uppercase tracking-widest transition-all bg-white/5 text-white/40 hover:text-white" data-tab="bundles" onclick="switchPricingTab('bundles')">Bundles</button>
+</div>
+</div>
+<div class="pricing-content active" id="pricing-images"><div class="flex gap-6 overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory"><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Entry</div><h3 class="text-2xl font-bold text-white">Trial</h3><p class="text-sm text-text-muted/60 leading-relaxed">5 Images<br/>1 High-End Model<br/>Standard Gen</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹399</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Basic</div><h3 class="text-2xl font-bold text-white">Starter</h3><p class="text-sm text-text-muted/60 leading-relaxed">50 Images<br/>2 High-End Models<br/>Priority Support</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹2,999</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-2 border-electric-indigo bg-electric-indigo/10 relative interactive-element"><div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-electric-indigo text-white px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Recommended</div><div class="space-y-4"><div class="text-[10px] font-bold text-electric-indigo brightness-150 uppercase tracking-widest">Scale</div><h3 class="text-2xl font-bold text-white">Growth</h3><p class="text-sm text-text-muted/60 leading-relaxed">100 Images<br/>5 High-End Models<br/>Commercial License</p></div><div class="mt-auto pt-8 border-t border-white/10 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹4,999</span><button class="w-10 h-10 rounded-full bg-electric-indigo flex items-center justify-center hover:bg-electric-indigo/80 transition-all shadow-lg shadow-electric-indigo/20"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Pro</div><h3 class="text-2xl font-bold text-white">Pro</h3><p class="text-sm text-text-muted/60 leading-relaxed">250 Images<br/>Unlimited Models<br/>API Access</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹8,499</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Elite</div><h3 class="text-2xl font-bold text-white">Elite</h3><p class="text-sm text-text-muted/60 leading-relaxed">350 Images<br/>Custom Training<br/>Dedicated Manager</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹11,499</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div></div></div>
+<div class="pricing-content" id="pricing-videos"><div class="flex gap-6 overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory"><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Entry</div><h3 class="text-2xl font-bold text-white">Trial</h3><p class="text-sm text-text-muted/60 leading-relaxed">3 Videos<br/>720p Quality<br/>Standard Render</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹999</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Basic</div><h3 class="text-2xl font-bold text-white">Starter</h3><p class="text-sm text-text-muted/60 leading-relaxed">5 Videos<br/>1080p Quality<br/>Priority Queue</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹1,999</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-2 border-soft-rose bg-soft-rose/10 relative interactive-element"><div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-soft-rose text-white px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Popular</div><div class="space-y-4"><div class="text-[10px] font-bold text-soft-rose brightness-150 uppercase tracking-widest">Scale</div><h3 class="text-2xl font-bold text-white">Growth</h3><p class="text-sm text-text-muted/60 leading-relaxed">15 Videos<br/>4K Quality<br/>Commercial License</p></div><div class="mt-auto pt-8 border-t border-white/10 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹4,999</span><button class="w-10 h-10 rounded-full bg-soft-rose flex items-center justify-center hover:bg-soft-rose/80 transition-all shadow-lg shadow-soft-rose/20"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Pro</div><h3 class="text-2xl font-bold text-white">Pro</h3><p class="text-sm text-text-muted/60 leading-relaxed">30 Videos<br/>8K Upscaling<br/>Custom Motion</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹8,499</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Elite</div><h3 class="text-2xl font-bold text-white">Elite</h3><p class="text-sm text-text-muted/60 leading-relaxed">50 Videos<br/>Full Production<br/>Dedicated Support</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹12,999</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div></div></div>
+<div class="pricing-content" id="pricing-bundles"><div class="flex gap-6 overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory"><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Starter</div><h3 class="text-2xl font-bold text-white">Bundle</h3><p class="text-sm text-text-muted/60 leading-relaxed">50 Images<br/>5 Videos<br/>Save 15%</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹4,498</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-2 border-warm-amber bg-warm-amber/10 relative interactive-element"><div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-warm-amber text-black px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Best Value</div><div class="space-y-4"><div class="text-[10px] font-bold text-warm-amber brightness-150 uppercase tracking-widest">Pro</div><h3 class="text-2xl font-bold text-white">Bundle</h3><p class="text-sm text-text-muted/60 leading-relaxed">250 Images<br/>30 Videos<br/>Save 30%</p></div><div class="mt-auto pt-8 border-t border-white/10 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹11,878</span><button class="w-10 h-10 rounded-full bg-warm-amber flex items-center justify-center hover:bg-warm-amber/80 transition-all shadow-lg shadow-warm-amber/20"><span class="material-symbols-outlined text-[18px] text-black">arrow_forward</span></button></div></div><div class="glass-card pricing-card-square p-8 rounded-[2rem] snap-center shrink-0 border-t-2 border-t-white/10 interactive-element"><div class="space-y-4"><div class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Elite</div><h3 class="text-2xl font-bold text-white">Elite</h3><p class="text-sm text-text-muted/60 leading-relaxed">350 Images<br/>50 Videos<br/>Save 40%</p></div><div class="mt-auto pt-8 border-t border-white/5 flex items-end justify-between"><span class="text-3xl font-bold text-white">₹20,823</span><button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button></div></div></div></div>
+</div>
+<!-- GUIDE VIEW -->
+<div class="view-content" id="view-guide">
+<header class="mb-16">
+<h2 class="text-5xl font-profico premium-gradient-text mb-4">How to Use</h2>
+<p class="text-on-surface-variant/60 text-sm tracking-widest uppercase font-bold">Master the autonomous fashion workflow</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card rounded-3xl p-10 h-64 border-dashed border-2 border-white/5 flex flex-col justify-end interactive-element">
+<div class="w-10 h-10 rounded-full bg-white/5 mb-6 flex items-center justify-center"><span class="material-symbols-outlined text-sm">upload</span></div>
+<div class="h-4 w-2/3 bg-white/5 rounded mb-3"></div>
+<div class="h-3 w-full bg-white/5 rounded"></div>
+<p class="text-[10px] uppercase font-bold text-text-muted mt-4">Step 1: Upload Gear</p>
+</div>
+<div class="glass-card rounded-3xl p-10 h-64 border-dashed border-2 border-white/5 flex flex-col justify-end interactive-element">
+<div class="w-10 h-10 rounded-full bg-white/5 mb-6 flex items-center justify-center"><span class="material-symbols-outlined text-sm">psychology</span></div>
+<div class="h-4 w-2/3 bg-white/5 rounded mb-3"></div>
+<div class="h-3 w-full bg-white/5 rounded"></div>
+<p class="text-[10px] uppercase font-bold text-text-muted mt-4">Step 2: Define Agent</p>
+</div>
+<div class="glass-card rounded-3xl p-10 h-64 border-dashed border-2 border-white/5 flex flex-col justify-end interactive-element">
+<div class="w-10 h-10 rounded-full bg-white/5 mb-6 flex items-center justify-center"><span class="material-symbols-outlined text-sm">auto_awesome</span></div>
+<div class="h-4 w-2/3 bg-white/5 rounded mb-3"></div>
+<div class="h-3 w-full bg-white/5 rounded"></div>
+<p class="text-[10px] uppercase font-bold text-text-muted mt-4">Step 3: Synthesize</p>
+</div>
+</div>
+</div>
+</main>
+<!-- AUTH MODAL -->
+<div class="fixed inset-0 z-[100] modal-overlay flex items-center justify-center hidden p-6" id="auth-modal">
+<div class="glass-panel w-full max-w-md rounded-[2.5rem] p-10 relative">
+<button class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all interactive-element" onclick="closeAuthModal()">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="text-center space-y-4 mb-10">
+<div class="w-16 h-16 bg-gradient-to-br from-electric-indigo to-soft-rose rounded-2xl mx-auto flex items-center justify-center text-2xl font-bold mb-6">G</div>
+<h2 class="text-3xl font-profico premium-gradient-text">Welcome Studio</h2>
+<p class="text-sm text-text-muted">Access your professional fashion AI suite.</p>
+</div>
+<div class="space-y-6" id="auth-step-1"><button class="w-full flex items-center justify-center gap-4 py-4 rounded-2xl bg-black border border-white/10 text-white font-bold text-sm hover:bg-white/5 transition-all interactive-element mb-6" onclick="simulateGoogleLogin()"><svg class="w-5 h-5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>Continue with Google</button><div class="relative flex items-center gap-4 mb-6"><div class="flex-1 h-px bg-white/10"></div><span class="text-[10px] text-text-muted uppercase tracking-widest">or</span><div class="flex-1 h-px bg-white/10"></div></div><div class="space-y-4" id="manual-auth-form"><div class="space-y-2"><label class="text-[10px] font-bold uppercase tracking-widest text-text-muted ml-1">Email Address *</label><input class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-white focus:border-primary focus:ring-0" placeholder="name@company.com" required="" type="email"/></div><div class="space-y-2"><label class="text-[10px] font-bold uppercase tracking-widest text-text-muted ml-1">Phone Number *</label><input class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-white focus:border-primary focus:ring-0" placeholder="+1 (555) 000-0000" required="" type="tel"/></div><button class="w-full py-4 rounded-xl bg-primary/10 text-primary border border-primary/20 font-bold text-sm uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all" onclick="showOtpStep()">Send OTP</button></div><div class="hidden space-y-6" id="otp-step"><div class="text-center"><p class="text-xs text-text-muted mb-4">Enter the 4-digit code sent to your device</p><div class="flex justify-center gap-3"><input class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl text-center text-xl font-bold text-white focus:border-primary focus:ring-0" maxlength="1" type="text"/><input class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl text-center text-xl font-bold text-white focus:border-primary focus:ring-0" maxlength="1" type="text"/><input class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl text-center text-xl font-bold text-white focus:border-primary focus:ring-0" maxlength="1" type="text"/><input class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl text-center text-xl font-bold text-white focus:border-primary focus:ring-0" maxlength="1" type="text"/></div></div><button class="w-full py-4 rounded-xl bg-primary text-on-primary font-bold text-sm uppercase tracking-widest shadow-lg shadow-indigo-500/20" onclick="closeAuthModal()">Verify &amp; Login</button><button class="w-full text-[10px] font-bold uppercase text-text-muted hover:text-white transition-colors" onclick="document.getElementById('otp-step').classList.add('hidden'); document.getElementById('manual-auth-form').classList.remove('hidden');">Back to Login</button></div></div>
+</div>
+</div>
+<script>
+        function switchView(viewId) {
+            document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + viewId).classList.add('active');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active', 'text-white');
+                btn.classList.add('text-on-surface-variant/70');
+                if(btn.classList.contains('nav-link-' + viewId)) {
+                    btn.classList.add('active', 'text-white');
+                    btn.classList.remove('text-on-surface-variant/70');
+                }
+            });
+
+            // Load gallery from session when switching to gallery tab
+            if (viewId === 'gallery') {
+                if (GenApp.user && GenApp.galleryAll.length > 0) {
+                    renderGallery(GenApp.galleryAll); // instant from memory
+                } else if (GenApp.user) {
+                    showGallerySkeleton();
+                    silentRefresh(GenApp.user);
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchMode(modeId) {
+            document.querySelectorAll('.mode-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('mode-' + modeId).classList.add('active');
+
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('mode-btn-' + modeId).classList.add('active');
+        }
+
+        function switchPricingTab(tabId) {
+            document.querySelectorAll('.pricing-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('pricing-' + tabId).classList.add('active');
+
+            document.querySelectorAll('.pricing-tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-white/10', 'text-white');
+                btn.classList.add('bg-white/5', 'text-white/40');
+                if(btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('active', 'bg-white/10', 'text-white');
+                    btn.classList.remove('bg-white/5', 'text-white/40');
+                }
+            });
+        }
+
+        function selectPill(btn, groupClass) {
+            document.querySelectorAll('.' + groupClass).forEach(p => p.classList.remove('pill-active'));
+            btn.classList.add('pill-active');
+        }
+
+        function selectModel(card) {
+            document.querySelectorAll('#model-grid > div').forEach(d => d.style.borderColor = 'rgba(255,255,255,0.1)');
+            card.style.borderColor = '#bbc3ff';
+        }
+
+        function togglePrompt(isCustom) {
+            document.getElementById('custom-prompt-container').classList.toggle('hidden', !isCustom);
+            document.getElementById('auto-prompt-container').classList.toggle('hidden', isCustom);
+            
+            document.getElementById('prompt-auto-btn').classList.toggle('bg-primary', !isCustom);
+            document.getElementById('prompt-auto-btn').classList.toggle('text-on-primary', !isCustom);
+            document.getElementById('prompt-auto-btn').classList.toggle('text-on-surface-variant/50', isCustom);
+            
+            document.getElementById('prompt-custom-btn').classList.toggle('bg-primary', isCustom);
+            document.getElementById('prompt-custom-btn').classList.toggle('text-on-primary', isCustom);
+            document.getElementById('prompt-custom-btn').classList.toggle('text-on-surface-variant/50', !isCustom);
+        }
+
+        function handleFileUpload(input, imgId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(imgId);
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                    const icon = document.getElementById(imgId.replace('thumb', 'icon'));
+                    if(icon) icon.classList.add('hidden');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function simulateGeneration(loaderId) {
+            const loader = document.getElementById(loaderId);
+            loader.classList.remove('hidden');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                switchView('gallery');
+            }, 3000);
+        }
+
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function openSupportModal() {
+            alert('Connecting to creative specialist...');
+        }
+
+        /* ═══════════════════════════════════════════════════
+           GEN AUTONOMOUS — BACKEND INTEGRATION
+           ═══════════════════════════════════════════════════ */
+
+        // ─── CONFIG ─────────────────────────────────────────────
+        const N8N_WEBHOOK = 'https://rishi932007.app.n8n.cloud/webhook-test/dd14a4e4-ca42-4f73-9909-303b151eb3a3'; // ← TEST URL, swap for production before going live
+
+        // ─── APP STATE ──────────────────────────────────────────
+        const GenApp = {
+            user: null,       // logged-in email
+            userData: null,   // full profile from n8n
+            galleryAll: [],   // all gallery items
+        };
+
+        // ─── INIT ON PAGE LOAD ──────────────────────────────────
+        window.addEventListener('DOMContentLoaded', () => {
+            const cached = sessionStorage.getItem('ga_user');
+            if (cached) {
+                try {
+                    GenApp.userData = JSON.parse(cached);
+                    GenApp.user = GenApp.userData.email;
+                    GenApp.galleryAll = GenApp.userData.gallery || [];
+                    applyUserToUI(GenApp.userData);
+                    renderGallery(GenApp.galleryAll);
+                    silentRefresh(GenApp.user); // update in background
+                } catch(e) {
+                    sessionStorage.removeItem('ga_user');
+                }
+            }
+            // else: anonymous, show login when needed
+        });
+
+        // ─── FETCH FROM N8N ─────────────────────────────────────
+        async function fetchFromN8n(payload) {
+            const res = await fetch(N8N_WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error('n8n returned ' + res.status);
+            return await res.json();
+        }
+
+        // ─── SILENT BACKGROUND REFRESH ──────────────────────────
+        async function silentRefresh(email) {
+            try {
+                const fresh = await fetchFromN8n({ action: 'get_profile', email });
+                GenApp.userData = fresh;
+                GenApp.galleryAll = fresh.gallery || [];
+                sessionStorage.setItem('ga_user', JSON.stringify(fresh));
+                applyUserToUI(fresh);
+                if (document.getElementById('view-gallery').classList.contains('active')) {
+                    renderGallery(GenApp.galleryAll);
+                }
+            } catch(e) { /* keep showing cached — no error to user */ }
+        }
+
+        // ─── APPLY USER DATA TO ALL UI ELEMENTS ─────────────────
+        function applyUserToUI(data) {
+            // Nav bar
+            const plan = data.plan_name || 'Free';
+            const total = data.credits_total || 0;
+            const used = data.credits_used || 0;
+            const remaining = total - used;
+            const expiry = data.plan_expiry || '—';
+
+            document.getElementById('nav-plan-name').textContent = plan;
+            document.getElementById('nav-credits').textContent = remaining + ' / ' + total;
+            document.getElementById('nav-expiry').textContent = expiry;
+
+            // Popover
+            document.getElementById('popover-plan-type').textContent = plan.toUpperCase();
+            const pct = total > 0 ? Math.round((used / total) * 100) : 0;
+            document.getElementById('popover-usage-pct').textContent = pct + '%';
+            document.getElementById('popover-usage-bar').style.width = pct + '%';
+            document.getElementById('popover-usage-label').textContent = used + ' of ' + total + ' credits used';
+            document.getElementById('popover-purchased').textContent = data.signup_date || '—';
+            document.getElementById('popover-expiry').textContent = expiry;
+
+            // User button — show first name after login
+            const firstName = (data.name || data.email || 'User').split(/[\s@]/)[0];
+            document.getElementById('nav-user-name').textContent = firstName;
+            document.getElementById('nav-user-name').classList.remove('hidden');
+            document.getElementById('nav-user-icon').textContent = 'check_circle';
+            document.getElementById('nav-user-icon').style.color = '#bbc3ff';
+
+            // Show nav plan bar (hidden for logged-out users)
+            document.getElementById('nav-plan-bar').style.opacity = '1';
+        }
+
+        // ─── RENDER GALLERY ─────────────────────────────────────
+        function renderGallery(items) {
+            const grid = document.getElementById('user-gallery-grid');
+            if (!items || items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-24">
+                        <span class="material-symbols-outlined text-5xl text-white/10 block mb-4">photo_library</span>
+                        <p class="text-sm font-bold uppercase tracking-widest text-on-surface-variant/40">No generations yet</p>
+                        <p class="text-xs text-on-surface-variant/30 mt-2">Your generated images &amp; videos will appear here</p>
+                        <button class="mt-6 px-6 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all interactive-element" onclick="switchView('studio')">Go to Studio</button>
+                    </div>`;
+                return;
+            }
+            grid.innerHTML = items.map(item => `
+                <div class="glass-card aspect-square rounded-2xl overflow-hidden relative group interactive-element">
+                    ${item.type === 'video'
+                        ? `<video class="w-full h-full object-cover" src="${item.cloudinary_url}" loop muted playsinline></video>
+                           <div class="absolute top-2 left-2 bg-black/60 rounded-full px-2 py-0.5 text-[8px] font-bold uppercase text-white">VIDEO</div>`
+                        : `<img class="w-full h-full object-cover" src="${item.cloudinary_url}" loading="lazy"/>`
+                    }
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-3">
+                        <div class="flex gap-2">
+                            <a href="${item.cloudinary_url}" download class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                            </a>
+                            <button onclick="navigator.clipboard.writeText('${item.cloudinary_url}')" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+                                <span class="material-symbols-outlined text-sm">share</span>
+                            </button>
+                        </div>
+                        <span class="text-[8px] font-bold uppercase tracking-wider text-white/50">${item.mode || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ─── GALLERY FILTER ─────────────────────────────────────
+        function filterGallery(type, btn) {
+            document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+                b.classList.remove('pill-active');
+                b.classList.add('text-on-surface-variant/50');
+            });
+            btn.classList.add('pill-active');
+            btn.classList.remove('text-on-surface-variant/50');
+            const filtered = type === 'all'
+                ? GenApp.galleryAll
+                : GenApp.galleryAll.filter(i => i.type === type);
+            renderGallery(filtered);
+        }
+
+        // ─── SHOW SKELETONS ─────────────────────────────────────
+        function showGallerySkeleton() {
+            document.getElementById('user-gallery-grid').innerHTML =
+                Array(10).fill(0).map(() =>
+                    `<div class="glass-card aspect-square rounded-2xl overflow-hidden animate-pulse bg-white/5"></div>`
+                ).join('');
+        }
+
+        // ─── GOOGLE LOGIN (real flow) ────────────────────────────
+        async function simulateGoogleLogin() {
+            const btn = event.currentTarget;
+            btn.innerHTML = '<span style="opacity:0.6">Connecting to Google...</span>';
+            btn.disabled = true;
+
+            // ⬇ In production: replace this block with real Google Identity SDK
+            // import { initializeApp } from firebase or use google.accounts.id.initialize()
+            // For now: use the manual email form as fallback
+            const emailInput = document.querySelector('#manual-auth-form input[type="email"]');
+            const email = emailInput ? emailInput.value.trim() : '';
+
+            if (!email) {
+                // Simulate demo login so UI shows
+                await loginWithEmail('demo@genautonomous.in');
+            } else {
+                await loginWithEmail(email);
+            }
+
+            btn.innerHTML = 'Continue with Google';
+            btn.disabled = false;
+        }
+
+        async function loginWithEmail(email) {
+            try {
+                showGallerySkeleton();
+                const data = await fetchFromN8n({ action: 'get_profile', email });
+                GenApp.user = email;
+                GenApp.userData = data;
+                GenApp.galleryAll = data.gallery || [];
+                sessionStorage.setItem('ga_user', JSON.stringify(data));
+                applyUserToUI(data);
+                renderGallery(GenApp.galleryAll);
+                closeAuthModal();
+            } catch(err) {
+                // n8n not connected yet — show demo state
+                const demo = {
+                    email, name: email.split('@')[0],
+                    plan_name: 'Free', plan_expiry: '—',
+                    credits_total: 10, credits_used: 0, gallery: [], invoices: []
+                };
+                GenApp.userData = demo;
+                GenApp.galleryAll = [];
+                applyUserToUI(demo);
+                renderGallery([]);
+                closeAuthModal();
+                console.warn('n8n not connected. Showing demo state. Error:', err.message);
+            }
+        }
+
+        // ─── NAV USER CLICK ─────────────────────────────────────
+        function handleNavUserClick() {
+            if (GenApp.user) {
+                if (confirm('Log out of ' + GenApp.user + '?')) {
+                    sessionStorage.removeItem('ga_user');
+                    GenApp.user = null;
+                    GenApp.userData = null;
+                    GenApp.galleryAll = [];
+                    document.getElementById('nav-plan-name').textContent = '—';
+                    document.getElementById('nav-credits').textContent = '—';
+                    document.getElementById('nav-expiry').textContent = '—';
+                    document.getElementById('nav-user-name').classList.add('hidden');
+                    document.getElementById('nav-user-icon').textContent = 'account_circle';
+                    document.getElementById('nav-user-icon').style.color = '';
+                    renderGallery([]);
+                }
+            } else {
+                openAuthModal();
+            }
+        }
+
+        // ─── OTP STEP (manual auth form) ────────────────────────
+        function showOtpStep() {
+            const emailInput = document.querySelector('#manual-auth-form input[type="email"]');
+            if (!emailInput || !emailInput.value.trim()) {
+                emailInput && emailInput.focus();
+                return;
+            }
+            document.getElementById('manual-auth-form').classList.add('hidden');
+            document.getElementById('otp-step').classList.remove('hidden');
+            // Auto-advance OTP inputs
+            document.querySelectorAll('#otp-step input').forEach((inp, i, all) => {
+                inp.addEventListener('input', () => {
+                    if (inp.value && i < all.length - 1) all[i+1].focus();
+                    if (inp.value.length > 1) inp.value = inp.value.slice(-1);
+                });
+            });
+        }
+
+        function toggleModelGallery(isGallery, event) {
+            if (event) event.preventDefault();
+            const grid = document.getElementById('model-grid');
+            const buttons = document.querySelectorAll('[onclick^="toggleModelGallery"]');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white/10', 'pill-active');
+                btn.classList.add('text-on-surface-variant/50');
+            });
+            
+            event.currentTarget.classList.add('bg-white/10', 'pill-active');
+            event.currentTarget.classList.remove('text-on-surface-variant/50');
+            
+            if (isGallery) {
+                grid.innerHTML = `
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)">
+                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWmnpo_BXgPjZpH2IepJCgPReglDlZx2_Mpy6FNqyT5hHnIh8fw84qiEQkhuiaBlonZ_gFLmorZzHqfIahzgvdvLsnkk7HjxQc-DwlyNU2gd2_-aiCg9tJjCYZ1kSeVzL95MxJsqwPn8jVi4jFC2LBQ8vA-3N9NiY7wnasiD8ao5599XHxkqu-bSkDF71Vc7Q1LTo4eNtWSm_BWs00cAAByRwFSqEqxnS-xoCa9-y2dazCxKxB-JLG4zbzyNXNV_7L6MrctwoOKU1x"/>
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)">
+                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEjmmyaKhTjtI1TzDOA8VBrn3o6J48WNSrALqP38NlKwBY6tk7-ciDLG1Nr7mhMX_8bZh--bnRGEoPapV8hc-sd_1BWgqB2fBLAwVxg71Ws46mM4PWxLp2AK7cgzEAbWh-b4-UA0dlD23qvVKak70kfeB9KxVsyTlzAsvpSYxNSHcIOCOGp-loZg6vz9uL1twO-4WF-7y0r8iXxm84lngLe3h0XR6BXTUyE5zUKTJypnevgp_TTRdOiQ8wdSwGM_rL2W7Mih8E3QYV"/>
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-dashed border-white/20 hover:border-primary/50 transition-all cursor-pointer flex flex-col items-center justify-center gap-2 interactive-element group relative" onclick="document.getElementById('custom-model-input').click()">
+                        <input class="hidden" id="custom-model-input" type="file"/>
+                        <span class="material-symbols-outlined text-white/40 group-hover:text-primary transition-colors">add_a_photo</span>
+                        <span class="text-[8px] font-bold uppercase tracking-tighter text-white/40 group-hover:text-white">New Creation</span>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = `
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)" style="border-color: #bbc3ff">
+                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTU2eZ-ZPhPG9Wtfgz4pD7sDQ9poME_ewn4lyUm4Tlm2MMoQ6IUBZm65VJ8h6Oum3xIVDhIE7vIJSNkXF3I9T8sAXNoYEj9_ms2nkTsy0aRx2bBUtYJReXXXDQQZsro1aQHPFCejjtDUYFFkMCKEJS6j76DOtNURjaBGTWKpcbQ47Cx4SfksQCncv51kXW-DoW_3ogGDTH3V68QdiJiYGRhItl95CR13Bcg6DTL1fV0Qk8sEW6-FT1G4M__b2xwfaPat1Ixfz1KGlf"/>
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)">
+                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChcmFK0CN0HO2aLIk2OgizDWFg1y7Lta10cBgJeP2PjuZbky_8pLeSGS6q-95PesivqqzEgRpiqo7S1eL9DRYQUO043I0ExnWu8SLOy-8MiELtpx6YDtNpOxZU7kh0rLUJmF7tetw2XWIliKgAIZTMABensjuqB0YL2259VtqHnKh-4Y96AFwb9Naq2IZv8r4pCiIb3bygdEW9nBs6s_W0aifh2vAQdL-q_yjLlVrfTOph8V8WHkzkCSxiRJ2IoNOASfKmTBpN6qAj"/>
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all cursor-pointer relative overflow-hidden group interactive-element" onclick="selectModel(this)">
+                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YblRaGeSuOeKqEsQl6piYvTk2hzZK6vb6L2nEWVG-n3xxc8n4p2igvUwCw32F4LAYAzTEEE63e9dDI8OiomWc5Vk3Dj5auYccO7zvz6WJHykFpC6tKO_pGRfuwdjKpM6FJzHBYXlBRqpIGnYSqNKbeJQwubC_Tw1pwIrm_2WnUoNK5gSt0PVq3fFeImkoXNSVqC8oC7j6nJs0x0XO4vwz84QDJvGOVnnvaeQWjyAtI9TcrSr6YwLul_ZuHXSkvlWQZt9Uxe9B2z3"/>
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl bg-white/5 border border-dashed border-white/20 hover:border-primary/50 transition-all cursor-pointer flex flex-col items-center justify-center gap-2 interactive-element group relative" onclick="document.getElementById('custom-model-input').click()">
+                        <input class="hidden" id="custom-model-input" type="file"/>
+                        <span class="material-symbols-outlined text-white/40 group-hover:text-primary transition-colors">add_a_photo</span>
+                        <span class="text-[8px] font-bold uppercase tracking-tighter text-white/40 group-hover:text-white">Custom Upload</span>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body></html>
